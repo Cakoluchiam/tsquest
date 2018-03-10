@@ -1,0 +1,306 @@
+{
+  "sets": {
+    "Base Set":{
+      "Quest Number":-2
+    },
+    "Promos":{
+      "Quest Number":-1,
+      "Heroes":[
+        "Outlands",
+        "Stalker",
+        "The Yellow Knight"
+      ],
+      "Items":[
+        "Necklace of Dawn"
+      ],
+      "Spells":[
+        "Form of the Juggernaut"
+      ],
+      "Weapons":[
+        "Hand Axe"
+      ]
+    },
+    "Bandits of Black Rock":{
+      "Quest Number":0,
+      "Heroes":[
+        "Edlin"
+      ],
+      "Items":[
+        "Scionic Annals"
+      ],
+      "Spells":[
+        "Dark Fire Torch"
+      ],
+      "Weapons":[
+        "Rapier"
+      ],
+      "Treasures":[
+        "Miricelle"
+      ],
+      "Monsters":[
+        "Black Rock Bandits"
+      ]
+    },
+    "A Mirror in the Dark":{
+      "Quest Number":1,
+      "Heroes":[
+        "Gorlandor",
+        "Hawkswood",
+        "Pylorian",
+        "Scathian",
+        "Silverhelm",
+        "Stormhand"
+      ],
+      "Items":[
+        "Amulet of Infravision",
+        "Gem of Healing",
+        "Tome of Knowledge"
+      ],
+      "Spells":[
+        "Fireball",
+        "Future Vision",
+        "Magic Missile",
+        "Moonlight"
+      ],
+      "Weapons":[
+        "Hammer",
+        "Maul",
+        "Shortbow",
+        "Shortspear",
+        "Shortsword"
+      ],
+      "Monsters":[
+        "Kobold Skirmishers",
+        "Goblin Grunts",
+        "Hobgoblin Brutes",
+        "Spider Terrors",
+        "Ancient Adventurers",
+        "Goblin King's Guard"
+      ],
+      "Guardians":[
+        "Smorga the Queen"
+      ],
+      "Treasures":[
+        "Stormland Mirror",
+        "Treasure Cache",
+        "Treasure Cache"
+      ],
+      "Dungeon Rooms":[
+        "Abandoned Gate",
+        "Mine",
+        "Crypt",
+        "Sunken Well",
+        "Throne Room",
+        "Vault"
+      ]
+    },
+    "Total Eclipse of the Sun":{
+      "Quest Number":2,
+      "Heroes":[
+        "Avania",
+        "Brimstone",
+        "Ehrlingal",
+        "Felin",
+        "Gendarme",
+        "Sephilest"
+      ],
+      "Items":[
+        "Elven Ring",
+        "Headband of Intellect",
+        "Strength Gauntlets",
+        "Wand of Light"
+      ],
+      "Spells":[
+        "Arcane Touch",
+        "Consecration",
+        "Lightning Bolt",
+        "Nature's Fury"
+      ],
+      "Weapons":[
+        "Longbow",
+        "Longsword",
+        "Punching Dagger",
+        "Quarterstaff"
+      ],
+      "Monsters":[
+        "Twisted Creatures",
+        "Woodland Sprites",
+        "Corrupted Elves",
+        "Foundational Keepers",
+        "Corrupted Centaurs",
+        "Treefolk"
+      ],
+      "Guardians":[
+        "Guardian of the Sun"
+      ],
+      "Treasures":[
+        "Sun of the Forest",
+        "Treasure Cache",
+        "Treasure Cache"
+      ],
+      "Dungeon Rooms":[
+        "Fairy Meadow",
+        "Ominous Looking Road",
+        "Hollow Tree",
+        "Tree House",
+        "Elven Outpost",
+        "Elven Ruins"
+      ]
+    },
+    "Risen from the Mire":{
+      "Quest Number":3,
+      "Heroes":[
+        "Bahran",
+        "Darameric",
+        "Linsha",
+        "Markennan",
+        "Nimblefingers",
+        "Regalen"
+      ],
+      "Items":[
+        "Crystal of Scrying",
+        "Holy Symbol",
+        "Potion of Stamina",
+        "Ring of Learning"
+      ],
+      "Spells":[
+        "Arcane Aura",
+        "Charm Monster",
+        "Enchant Weapons",
+        "Vampiric Touch"
+      ],
+      "Weapons":[
+        "Battle Axe",
+        "Boomerang",
+        "Crystal Dagger",
+        "Holy Mace"
+      ],
+      "Monsters":[
+        "Ensnaring Vines",
+        "Bog Zombies",
+        "Chaos Lizards",
+        "Moor Skeletons",
+        "Marsh Trolls",
+        "Swamp Spirits"
+      ],
+      "Guardians":[
+        "Baalok, the Flesh Weaver"
+      ],
+      "Treasures":[
+        "Elemental Elixir",
+        "Treasure Cache",
+        "Treasure Cache"
+      ],
+      "Dungeon Rooms":[
+        "Alchemy Chamber",
+        "The Servant's Tombs",
+        "Bog",
+        "Sunken Graveyard",
+        "Blood Altar Room",
+        "The Lich's Tomb"
+      ]
+    },
+    "At the Foundations of the World":{
+      "Quest Number":4,
+      "Heroes":[
+        "Darkrend",
+        "Grimwolf",
+        "Honormain",
+        "Jadress",
+        "Moonblades",
+        "Stormskull"
+      ],
+      "Items":[
+        "Damilu Huskie",
+        "Daramere's Cloak",
+        "Potion of Light",
+        "Ring of Proficiency"
+      ],
+      "Spells":[
+        "Death Pact",
+        "Mirror Image",
+        "Tempest",
+        "True Seeing"
+      ],
+      "Weapons":[
+        "Broadsword",
+        "Crossbow",
+        "Flail",
+        "Two-Handed Sword"
+      ],
+      "Monsters":[
+        "Air Servitors",
+        "Water Servitors",
+        "Earth Servitors",
+        "Fire Servitors",
+        "Divine Founders",
+        "Abyssal Founders"
+      ],
+      "Guardians":[
+        "Miricelle, Scion Defender"
+      ],
+      "Treasures":[
+        "Elmoran",
+        "Treasure Cache",
+        "Treasure Cache"
+      ],
+      "Dungeon Rooms":[
+        "Air Temple",
+        "Water Temple",
+        "Earth Temple",
+        "Fire Temple",
+        "Abyssal Temple",
+        "Celestial Temple"
+      ]
+    },
+    "Ripples in Time":{
+      "Quest Number":5,
+      "Heroes":[
+        "Aird",
+        "Arcanian",
+        "Dunardic",
+        "Regian",
+        "Terakian",
+        "Veris"
+      ],
+      "Items":[
+        "Amulet of Power",
+        "Lightstone Gem",
+        "Nature's Amulet",
+        "Ring of Spell Storing"
+      ],
+      "Spells":[
+        "Creeping Death",
+        "Frostbolt",
+        "Mind Control",
+        "Summon Storm"
+      ],
+      "Weapons":[
+        "Cursed Mace",
+        "King's Sword",
+        "Longspear",
+        "Magi Staff"
+      ],
+      "Monsters":[
+        "Doomknights",
+        "Gnoll Raiders",
+        "Minions of Chaos",
+        "Torments",
+        "Ancient Wyrms",
+        "Ancient Protectors"
+      ],
+      "Guardians":[
+        "Death Sentinel"
+      ],
+      "Treasures":[
+        "Axe of the Giants",
+        "Lightbringer"
+      ],
+      "Dungeon Rooms":[
+        "Gate Cavern",
+        "Dangerous Passageway",
+        "Fire Chasm"
+      ]
+    }
+  }
+}

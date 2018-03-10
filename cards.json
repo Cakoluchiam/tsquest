@@ -1,0 +1,823 @@
+{
+  "Heroes": {
+    "Outlands": {
+      "Quest": "Promos"
+    },
+    "Stalker": {
+      "Quest": "Promos"
+    },
+    "The Yellow Knight": {
+      "Quest": "Promos"
+    },
+    "Edlin": {
+      "Quest": "Bandits of Black Rock"
+    },
+    "Gorlandor": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Hawkswood": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Pylorian": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Scathian": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Silverhelm": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Stormhand": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Avania": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Brimstone": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Ehrlingal": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Felin": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Gendarme": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Sephilest": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Bahran": {
+      "Quest": "Risen from the Mire"
+    },
+    "Darameric": {
+      "Quest": "Risen from the Mire"
+    },
+    "Linsha": {
+      "Quest": "Risen from the Mire"
+    },
+    "Markennan": {
+      "Quest": "Risen from the Mire"
+    },
+    "Nimblefingers": {
+      "Quest": "Risen from the Mire"
+    },
+    "Regalen": {
+      "Quest": "Risen from the Mire"
+    },
+    "Darkrend": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Grimwolf": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Honormain": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Jadress": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Moonblades": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Stormskull": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Aird": {
+      "Quest": "Ripples in Time"
+    },
+    "Arcanian": {
+      "Quest": "Ripples in Time"
+    },
+    "Dunardic": {
+      "Quest": "Ripples in Time"
+    },
+    "Regian": {
+      "Quest": "Ripples in Time"
+    },
+    "Terakian": {
+      "Quest": "Ripples in Time"
+    },
+    "Veris": {
+      "Quest": "Ripples in Time"
+    }
+  },
+  "Items": {
+    "Necklace of Dawn": {
+      "Quest": "Promos"
+    },
+    "Scionic Annals": {
+      "Quest": "Bandits of Black Rock"
+    },
+    "Amulet of Infravision": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Gem of Healing": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Tome of Knowledge": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Elven Ring": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Headband of Intellect": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Strength Gauntlets": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Wand of Light": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Crystal of Scrying": {
+      "Quest": "Risen from the Mire"
+    },
+    "Holy Symbol": {
+      "Quest": "Risen from the Mire"
+    },
+    "Potion of Stamina": {
+      "Quest": "Risen from the Mire"
+    },
+    "Ring of Learning": {
+      "Quest": "Risen from the Mire"
+    },
+    "Damilu Huskie": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Daramere's Cloak": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Potion of Light": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Ring of Proficiency": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Amulet of Power": {
+      "Quest": "Ripples in Time"
+    },
+    "Lightstone Gem": {
+      "Quest": "Ripples in Time"
+    },
+    "Nature's Amulet": {
+      "Quest": "Ripples in Time"
+    },
+    "Ring of Spell Storing": {
+      "Quest": "Ripples in Time"
+    }
+  },
+  "Spells": {
+    "Form of the Juggernaut": {
+      "Quest": "Promos"
+    },
+    "Dark Fire Torch": {
+      "Quest": "Bandits of Black Rock"
+    },
+    "Fireball": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Future Vision": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Magic Missile": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Moonlight": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Arcane Touch": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Consecration": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Lightning Bolt": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Nature's Fury": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Arcane Aura": {
+      "Quest": "Risen from the Mire"
+    },
+    "Charm Monster": {
+      "Quest": "Risen from the Mire"
+    },
+    "Enchant Weapons": {
+      "Quest": "Risen from the Mire"
+    },
+    "Vampiric Touch": {
+      "Quest": "Risen from the Mire"
+    },
+    "Death Pact": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Mirror Image": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Tempest": {
+      "Quest": "At the Foundations of the World"
+    },
+    "True Seeing": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Creeping Death": {
+      "Quest": "Ripples in Time"
+    },
+    "Frostbolt": {
+      "Quest": "Ripples in Time"
+    },
+    "Mind Control": {
+      "Quest": "Ripples in Time"
+    },
+    "Summon Storm": {
+      "Quest": "Ripples in Time"
+    }
+  },
+  "Weapons": {
+    "Hand Axe": {
+      "Quest": "Promos"
+    },
+    "Rapier": {
+      "Quest": "Bandits of Black Rock"
+    },
+    "Hammer": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Maul": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Shortbow": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Shortspear": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Shortsword": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Longbow": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Longsword": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Punching Dagger": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Quarterstaff": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Battle Axe": {
+      "Quest": "Risen from the Mire"
+    },
+    "Boomerang": {
+      "Quest": "Risen from the Mire"
+    },
+    "Crystal Dagger": {
+      "Quest": "Risen from the Mire"
+    },
+    "Holy Mace": {
+      "Quest": "Risen from the Mire"
+    },
+    "Broadsword": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Crossbow": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Flail": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Two-Handed Sword": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Cursed Mace": {
+      "Quest": "Ripples in Time"
+    },
+    "King's Sword": {
+      "Quest": "Ripples in Time"
+    },
+    "Longspear": {
+      "Quest": "Ripples in Time"
+    },
+    "Magi Staff": {
+      "Quest": "Ripples in Time"
+    }
+  },
+  "Treasures": {
+    "Miricelle": {
+      "Quest": "Bandits of Black Rock"
+    },
+    "Stormland Mirror": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Sun of the Forest": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Elemental Elixir": {
+      "Quest": "Risen from the Mire"
+    },
+    "Elmoran": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Axe of the Giants": {
+      "Quest": "Ripples in Time"
+    },
+    "Lightbringer": {
+      "Quest": "Ripples in Time"
+    }
+  },
+  "Monsters": {
+    "Black Rock Bandits": {
+      "Quest": "Bandits of Black Rock"
+    },
+    "Kobold Skirmishers": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Goblin Grunts": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Hobgoblin Brutes": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Spider Terrors": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Ancient Adventurers": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Goblin King's Guard": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Twisted Creatures": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Woodland Sprites": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Corrupted Elves": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Foundational Keepers": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Corrupted Centaurs": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Treefolk": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Ensnaring Vines": {
+      "Quest": "Risen from the Mire"
+    },
+    "Bog Zombies": {
+      "Quest": "Risen from the Mire"
+    },
+    "Chaos Lizards": {
+      "Quest": "Risen from the Mire"
+    },
+    "Moor Skeletons": {
+      "Quest": "Risen from the Mire"
+    },
+    "Marsh Trolls": {
+      "Quest": "Risen from the Mire"
+    },
+    "Swamp Spirits": {
+      "Quest": "Risen from the Mire"
+    },
+    "Air Servitors": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Water Servitors": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Earth Servitors": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Fire Servitors": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Divine Founders": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Abyssal Founders": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Doomknights": {
+      "Quest": "Ripples in Time"
+    },
+    "Gnoll Raiders": {
+      "Quest": "Ripples in Time"
+    },
+    "Minions of Chaos": {
+      "Quest": "Ripples in Time"
+    },
+    "Torments": {
+      "Quest": "Ripples in Time"
+    },
+    "Ancient Wyrms": {
+      "Quest": "Ripples in Time"
+    },
+    "Ancient Protectors": {
+      "Quest": "Ripples in Time"
+    }
+  },
+  "Guardians": {
+    "Smorga the Queen": {
+      "Quest": "A Mirror in the Dark"
+    },
+    "Guardian of the Sun": {
+      "Quest": "Total Eclipse of the Sun"
+    },
+    "Baalok, the Flesh Weaver": {
+      "Quest": "Risen from the Mire"
+    },
+    "Miricelle, Scion Defender": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Death Sentinel": {
+      "Quest": "Ripples in Time"
+    }
+  },
+  "Dungeon Rooms": {
+    "Abandoned Gate": {
+      "Quest": "A Mirror in the Dark",
+      "Level":1,
+      "Light":0
+    },
+    "Mine": {
+      "Quest": "A Mirror in the Dark",
+      "Level":1,
+      "Light":0,
+      "Battle":{
+        "Health":1
+      },
+      "Reward":{
+        "Iron Rations":1
+      }
+    },
+    "Crypt": {
+      "Quest": "A Mirror in the Dark",
+      "Level":2,
+      "Light":1,
+      "Alert":true,
+      "Entry":{
+        "Unless":{
+          "Rogue":1
+        },
+        "Penalty":{
+          "Gear":{
+            "Choose":1
+          }
+        }
+      },
+      "Battle":{
+        "Wound":1
+      },
+      "Reward":{
+        "XP":1
+      }
+    },
+    "Sunken Well": {
+      "Quest": "A Mirror in the Dark",
+      "Level":2,
+      "Light":1,
+      "Battle":{
+        "Health":1
+      },
+      "Reward":{
+        "Lantern":1
+      }
+    },
+    "Throne Room": {
+      "Quest": "A Mirror in the Dark",
+      "Level":3,
+      "Light":2,
+      "Alert":true,
+      "Entry":{
+        "Unless":{
+          "Rogue":1
+        },
+        "Penalty":{
+          "Card":{
+            "Random":1
+          }
+        }
+      },
+      "After Battle":{
+        "Return":0,
+        "Text":"Place your Champion in the [0] room."
+      },
+      "Reward":{
+        "XP":2
+      }
+    },
+    "Vault": {
+      "Quest": "A Mirror in the Dark",
+      "Level":3,
+      "Light":2,
+      "Battle":{
+        "Wound":1
+      },
+      "Reward":{
+        "Treasure":1
+      },
+      "After Battle":{
+        "Return":2,
+        "Text":"Place your Champion in a [II] room."
+      }
+    },
+    "Fairy Meadow": {
+      "Quest": "Total Eclipse of the Sun",
+      "Level":1,
+      "Light":0,
+      "Battle":{
+        "Magic Resistance":2
+      },
+      "Reward":{
+        "Lantern":1
+      }
+    },
+    "Ominous Looking Road": {
+      "Quest": "Total Eclipse of the Sun",
+      "Level":1,
+      "Light":0,
+      "Battle":{
+        "Armor":1
+      },
+      "Spoils":{
+        "Buy":{
+          "Spell":1,
+          "Weapon":1,
+          "Gold":{
+            "Bonus":1
+          }
+        }
+      }
+    },
+    "Hollow Tree": {
+      "Quest": "Total Eclipse of the Sun",
+      "Level":2,
+      "Light":2,
+      "Reward":{
+        "Potion":1
+      },
+      "After Battle":{
+        "Return":0,
+        "Text":"Place your Champion in the [0] room."
+      }
+    },
+    "Tree House": {
+      "Quest": "Total Eclipse of the Sun",
+      "Level":2,
+      "Light":1,
+      "Battle":{
+        "Health":2
+      },
+      "Spoils":{
+        "Destroy":{
+          "Type":"Starter",
+          "Amount":1
+        }
+      }
+    },
+    "Elven Outpost": {
+      "Quest": "Total Eclipse of the Sun",
+      "Level":3,
+      "Light":2,
+      "Battle":{
+        "Wound":1
+      },
+      "Spoils":{
+        "Level Up":{
+          "XP":{
+            "Discount":2
+          }
+        },
+        "Return":0,
+        "Text":"Level up a Hero for 2 less [XP]. Place your Champion in the [0] room."
+      }
+    },
+    "Elven Ruins": {
+      "Quest": "Total Eclipse of the Sun",
+      "Level":3,
+      "Light":2,
+      "Battle":{
+        "Health":"Special"
+      },
+      "Special":{
+        "Unless":{
+          "Rogue":1
+        },
+        "Penalty":{
+          "Card":{
+            "Choose":1
+          },
+          "Battle":{
+            "Health":"Special"
+          }
+        },
+        "Text":"Unless you have a Rogue, discard 1 card from your deck. +[Health] = the card's [Cost]"
+      }
+    },
+    "Alchemy Chamber": {
+      "Quest": "Risen from the Mire",
+      "Level":1,
+      "Light":0,
+      "Battle":{
+        "Health":"Special"
+      },
+      "Special":{
+        "Unless":{
+          "Magic":1
+        },
+        "Penalty":{
+          "Battle":{
+            "Health":1
+          }
+        }
+      }
+    },
+    "The Servant's Tombs": {
+      "Quest": "Risen from the Mire",
+      "Level":1,
+      "Light":0,
+      "Battle":{
+        "Armor":"Special"
+      },
+      "Special":{
+        "Unless":{
+          "Light":1
+        },
+        "Penalty":{
+          "Battle":{
+            "Health":2
+          }
+        }
+      }
+    },
+    "Bog": {
+      "Quest": "Risen from the Mire",
+      "Level":2,
+      "Light":1,
+      "Battle":{
+        "Heroes":{
+          "Skill":-1
+        }
+      },
+      "Spoils":{
+        "Buy":{
+          "Spell":1,
+          "Weapon":1
+        }
+      }
+    },
+    "Sunken Graveyard": {
+      "Quest": "Risen from the Mire",
+      "Level":2,
+      "Light":0,
+      "Battle":{
+        "Health":2,
+        "Armor":"Special"
+      },
+      "Special":{
+        "Unless":{
+          "Light":2
+        },
+        "Penalty":{
+          "Battle":{
+            "Armor":3
+          }
+        }
+      },
+      "Reward":{
+        "Iron Rations":1
+      }
+    },
+    "Blood Altar Room": {
+      "Quest": "Risen from the Mire",
+      "Level":3,
+      "Light":2,
+      "Alert":true,
+      "Special":{
+        "Cost":{
+          "Wound":1
+        },
+        "Light":-1,
+        "Text":"You may take 1 or more [Wound] to reduce this room's [Light] by 1 for each [Wound] taken."
+      },
+      "Battle":{
+        "Health":2
+      },
+      "Reward":{
+        "XP":2
+      },
+      "After Battle":{
+        "Return":0
+      }
+    },
+    "The Lich's Tomb": {
+      "Quest": "Risen from the Mire",
+      "Level":3,
+      "Light":1,
+      "Battle":{
+        "Health":"Special",
+      },
+      "Special":{
+        "Text":"Roll 2d6. +[Health] = the lower value rolled, or the total value if you rolled doubles."
+      },
+      "Reward":{
+        "XP":3
+      },
+      "After Battle":{
+        "Return":0
+      }
+    },
+    "Air Temple": {
+      "Quest": "At the Foundations of the World",
+      "Level":1,
+      "Light":0,
+      "Battle":{
+        "Magic Resistance":1
+      },
+      "Spoils":{
+        "Buy":{
+          "Item":1
+        }
+      }
+    },
+    "Water Temple": {
+      "Quest": "At the Foundations of the World",
+      "Level":1,
+      "Light":1,
+      "Special":{
+        "Text":"Refill this room from the other [I] room. Then, refill that room from the Monster deck."
+      },
+      "Reward":{
+        "Iron Rations":1
+      }
+    },
+    "Earth Temple": {
+      "Quest": "At the Foundations of the World",
+      "Level":2,
+      "Light":1,
+      "Special":{
+        "Requires":{
+          "Text":"If your total Attack ([Physical] + [Magic]) exceeds this Monster's [Health] by 3 or more, you have +1 HP."
+        },
+        "Reward":{
+          "HP":1
+        }
+      }
+    },
+    "Fire Temple": {
+      "Quest": "At the Foundations of the World",
+      "Level":2,
+      "Light":0,
+      "Battle":{
+        "Weapons":{
+          "Skill":2
+        },
+        "Wound":1
+      },
+      "Reward":{
+        "Lantern":2
+      }
+    },
+    "Abyssal Temple": {
+      "Quest": "At the Foundations of the World",
+      "Level":3,
+      "Light":2,
+      "After Battle":{
+        "Text":"Refill this room face down. Turn this room's Monster face up before a battle here; if it is not defeated put it at the bottom of its deck."
+      },
+      "Spoils":{
+        "Return":0,
+        "XP":"Special",
+        "Text":"Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
+      },
+      "Special":{
+        "Cost":{
+          "Return":0
+        },
+        "XP":"Special",
+        "Text":"Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
+      }
+    },
+    "Celestial Temple": {
+      "Quest": "At the Foundations of the World"
+    },
+    "Gate Cavern": {
+      "Quest": "Ripples in Time"
+    },
+    "Dangerous Passageway": {
+      "Quest": "Ripples in Time"
+    },
+    "Fire Chasm": {
+      "Quest": "Ripples in Time"
+    }
+  }
+}

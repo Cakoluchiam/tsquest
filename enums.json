@@ -1,0 +1,18 @@
+{
+  "ids":{
+    "base":"Base Set",
+    "promos":"Promos",
+    "quest0":"Bandits of Black Rock",
+    "quest1":"A Mirror in the Dark",
+    "quest2":"Risen from the Mire",
+    "quest3":"At the Foundations of the World",
+    "quest4":"Total Eclipse of the Sun",
+    "quest5":"Ripple in Time"
+  },
+  "color":{
+    "onbuttoncolor": "green",
+    "ontextcolor": "white",
+    "offbuttoncolor": "red",
+    "offtextcolor": "white"
+  }
+}
