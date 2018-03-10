@@ -98,7 +98,7 @@ $(function() {
       });
     }
 
-    log(null,"Could not load cards from file.",cards,Array.from(arguments));
+    log(null,"Could not load cards from file.",cards,arguments);
     log(null,"Leveled Monsters:",monster_options_leveled,"Leveled Rooms:",room_options_leveled);
   });
 
