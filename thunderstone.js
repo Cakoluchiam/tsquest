@@ -85,11 +85,11 @@ $(function() {
   });
 
   $("#choose_guardian").click(function(event){
-    log("#room_choices",choose(1,guardian_options).join(', '));
+    log("#guardian_choice",choose(1,guardian_options).join(', '));
   });
 
   $("#choose_rooms_random").click(function(event){
-    log("#guardian_choice",choose(6,room_options).join(', '));
+    log("#room_choices",choose(6,room_options).join(', '));
   });
 
   $("#choose_monsters_leveled").click(function(event){
