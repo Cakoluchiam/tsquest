@@ -17,8 +17,27 @@
 </head>
 <body>
   <section id="group_selector">
-    <button id="choose_heroes" type="button" class="disabled generate">Choose Heroes</button>
+    <button id="choose_heroes" type="button" class="generate">Choose Heroes</button> <span id="hero_choices"></span>
+    <br>
+    <button id="choose_items" type="button" class="generate">Choose Items</button> <span id="item_choices"></span>
+    <br>
+    <button id="choose_spells" type="button" class="generate">Choose Spells</button> <span id="spell_choices"></span>
+    <br>
+    <button id="choose_weapons" type="button" class="generate">Choose Weapons</button> <span id="weapon_choices"></span>
+    <br>
+    <button id="choose_monsters_random" type="button" class="generate">Choose Monsters (Random)</button> <span id="monster_choices"></span>
+    <br>
+    <button id="choose_rooms_random" type="button" class="generate">Choose Rooms (Random)</button> <span id="room_choices"></span>
+    <br>
+    <button id="choose_guardian" type="button" class="generate">Choose Guardian</button> <span id="guardian_choice"></span>
+    <br>
+    Coming Soon:
+    <br>
+    <button id="choose_monsters_leveled" type="button" class="disabled generate" disabled="disabled">Choose Monsters (Leveled)</button>
+    <br>
+    <button id="choose_rooms_leveled" type="button" class="disabled generate" disabled="disabled">Choose Rooms (Leveled)</button>
   </section>
+  <div id="output"></div>
   <script src="thunderstone.js"></script>
 </body>
 </html>
