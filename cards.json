@@ -724,7 +724,7 @@
       "Level": 3,
       "Light": 1,
       "Battle": {
-        "Health": "Special",
+        "Health": "Special"
       },
       "Special": {
         "Text": "Roll 2d6. +[Health] = the lower value rolled, or the total value if you rolled doubles."
