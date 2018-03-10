@@ -445,366 +445,366 @@
   "Dungeon Rooms": {
     "Abandoned Gate": {
       "Quest": "A Mirror in the Dark",
-      "Level":1,
-      "Light":0
+      "Level": 1,
+      "Light": 0
     },
     "Mine": {
       "Quest": "A Mirror in the Dark",
-      "Level":1,
-      "Light":0,
-      "Battle":{
-        "Health":1
+      "Level": 1,
+      "Light": 0,
+      "Battle": {
+        "Health": 1
       },
-      "Reward":{
-        "Iron Rations":1
+      "Reward": {
+        "Iron Rations": 1
       }
     },
     "Crypt": {
       "Quest": "A Mirror in the Dark",
-      "Level":2,
-      "Light":1,
-      "Alert":true,
-      "Entry":{
-        "Unless":{
-          "Rogue":1
+      "Level": 2,
+      "Light": 1,
+      "Alert": true,
+      "Entry": {
+        "Unless": {
+          "Rogue": 1
         },
-        "Penalty":{
-          "Gear":{
-            "Choose":1
+        "Penalty": {
+          "Gear": {
+            "Choose": 1
           }
         }
       },
-      "Battle":{
-        "Wound":1
+      "Battle": {
+        "Wound": 1
       },
-      "Reward":{
-        "XP":1
+      "Reward": {
+        "XP": 1
       }
     },
     "Sunken Well": {
       "Quest": "A Mirror in the Dark",
-      "Level":2,
-      "Light":1,
-      "Battle":{
-        "Health":1
+      "Level": 2,
+      "Light": 1,
+      "Battle": {
+        "Health": 1
       },
-      "Reward":{
-        "Lantern":1
+      "Reward": {
+        "Lantern": 1
       }
     },
     "Throne Room": {
       "Quest": "A Mirror in the Dark",
-      "Level":3,
-      "Light":2,
-      "Alert":true,
-      "Entry":{
-        "Unless":{
-          "Rogue":1
+      "Level": 3,
+      "Light": 2,
+      "Alert": true,
+      "Entry": {
+        "Unless": {
+          "Rogue": 1
         },
-        "Penalty":{
-          "Card":{
-            "Random":1
+        "Penalty": {
+          "Card": {
+            "Random": 1
           }
         }
       },
-      "After Battle":{
-        "Return":0,
-        "Text":"Place your Champion in the [0] room."
+      "After Battle": {
+        "Return": 0,
+        "Text": "Place your Champion in the [0] room."
       },
-      "Reward":{
-        "XP":2
+      "Reward": {
+        "XP": 2
       }
     },
     "Vault": {
       "Quest": "A Mirror in the Dark",
-      "Level":3,
-      "Light":2,
-      "Battle":{
-        "Wound":1
+      "Level": 3,
+      "Light": 2,
+      "Battle": {
+        "Wound": 1
       },
-      "Reward":{
-        "Treasure":1
+      "Reward": {
+        "Treasure": 1
       },
-      "After Battle":{
-        "Return":2,
-        "Text":"Place your Champion in a [II] room."
+      "After Battle": {
+        "Return": 2,
+        "Text": "Place your Champion in a [II] room."
       }
     },
     "Fairy Meadow": {
       "Quest": "Total Eclipse of the Sun",
-      "Level":1,
-      "Light":0,
-      "Battle":{
-        "Magic Resistance":2
+      "Level": 1,
+      "Light": 0,
+      "Battle": {
+        "Magic Resistance": 2
       },
-      "Reward":{
-        "Lantern":1
+      "Reward": {
+        "Lantern": 1
       }
     },
     "Ominous Looking Road": {
       "Quest": "Total Eclipse of the Sun",
-      "Level":1,
-      "Light":0,
-      "Battle":{
-        "Armor":1
+      "Level": 1,
+      "Light": 0,
+      "Battle": {
+        "Armor": 1
       },
-      "Spoils":{
-        "Buy":{
-          "Spell":1,
-          "Weapon":1,
-          "Gold":{
-            "Bonus":1
+      "Spoils": {
+        "Buy": {
+          "Spell": 1,
+          "Weapon": 1,
+          "Gold": {
+            "Bonus": 1
           }
         }
       }
     },
     "Hollow Tree": {
       "Quest": "Total Eclipse of the Sun",
-      "Level":2,
-      "Light":2,
-      "Reward":{
-        "Potion":1
+      "Level": 2,
+      "Light": 2,
+      "Reward": {
+        "Potion": 1
       },
-      "After Battle":{
-        "Return":0,
-        "Text":"Place your Champion in the [0] room."
+      "After Battle": {
+        "Return": 0,
+        "Text": "Place your Champion in the [0] room."
       }
     },
     "Tree House": {
       "Quest": "Total Eclipse of the Sun",
-      "Level":2,
-      "Light":1,
-      "Battle":{
-        "Health":2
+      "Level": 2,
+      "Light": 1,
+      "Battle": {
+        "Health": 2
       },
-      "Spoils":{
-        "Destroy":{
-          "Type":"Starter",
-          "Amount":1
+      "Spoils": {
+        "Destroy": {
+          "Type": "Starter",
+          "Amount": 1
         }
       }
     },
     "Elven Outpost": {
       "Quest": "Total Eclipse of the Sun",
-      "Level":3,
-      "Light":2,
-      "Battle":{
-        "Wound":1
+      "Level": 3,
+      "Light": 2,
+      "Battle": {
+        "Wound": 1
       },
-      "Spoils":{
-        "Level Up":{
-          "XP":{
-            "Discount":2
+      "Spoils": {
+        "Level Up": {
+          "XP": {
+            "Discount": 2
           }
         },
-        "Return":0,
-        "Text":"Level up a Hero for 2 less [XP]. Place your Champion in the [0] room."
+        "Return": 0,
+        "Text": "Level up a Hero for 2 less [XP]. Place your Champion in the [0] room."
       }
     },
     "Elven Ruins": {
       "Quest": "Total Eclipse of the Sun",
-      "Level":3,
-      "Light":2,
-      "Battle":{
-        "Health":"Special"
+      "Level": 3,
+      "Light": 2,
+      "Battle": {
+        "Health": "Special"
       },
-      "Special":{
-        "Unless":{
-          "Rogue":1
+      "Special": {
+        "Unless": {
+          "Rogue": 1
         },
-        "Penalty":{
-          "Card":{
-            "Choose":1
+        "Penalty": {
+          "Card": {
+            "Choose": 1
           },
-          "Battle":{
-            "Health":"Special"
+          "Battle": {
+            "Health": "Special"
           }
         },
-        "Text":"Unless you have a Rogue, discard 1 card from your deck. +[Health] = the card's [Cost]"
+        "Text": "Unless you have a Rogue, discard 1 card from your deck. +[Health] = the card's [Cost]"
       }
     },
     "Alchemy Chamber": {
       "Quest": "Risen from the Mire",
-      "Level":1,
-      "Light":0,
-      "Battle":{
-        "Health":"Special"
+      "Level": 1,
+      "Light": 0,
+      "Battle": {
+        "Health": "Special"
       },
-      "Special":{
-        "Unless":{
-          "Magic":1
+      "Special": {
+        "Unless": {
+          "Magic": 1
         },
-        "Penalty":{
-          "Battle":{
-            "Health":1
+        "Penalty": {
+          "Battle": {
+            "Health": 1
           }
         }
       }
     },
     "The Servant's Tombs": {
       "Quest": "Risen from the Mire",
-      "Level":1,
-      "Light":0,
-      "Battle":{
-        "Armor":"Special"
+      "Level": 1,
+      "Light": 0,
+      "Battle": {
+        "Armor": "Special"
       },
-      "Special":{
-        "Unless":{
-          "Light":1
+      "Special": {
+        "Unless": {
+          "Light": 1
         },
-        "Penalty":{
-          "Battle":{
-            "Health":2
+        "Penalty": {
+          "Battle": {
+            "Health": 2
           }
         }
       }
     },
     "Bog": {
       "Quest": "Risen from the Mire",
-      "Level":2,
-      "Light":1,
-      "Battle":{
-        "Heroes":{
-          "Skill":-1
+      "Level": 2,
+      "Light": 1,
+      "Battle": {
+        "Heroes": {
+          "Skill": -1
         }
       },
-      "Spoils":{
-        "Buy":{
-          "Spell":1,
-          "Weapon":1
+      "Spoils": {
+        "Buy": {
+          "Spell": 1,
+          "Weapon": 1
         }
       }
     },
     "Sunken Graveyard": {
       "Quest": "Risen from the Mire",
-      "Level":2,
-      "Light":0,
-      "Battle":{
-        "Health":2,
-        "Armor":"Special"
+      "Level": 2,
+      "Light": 0,
+      "Battle": {
+        "Health": 2,
+        "Armor": "Special"
       },
-      "Special":{
-        "Unless":{
-          "Light":2
+      "Special": {
+        "Unless": {
+          "Light": 2
         },
-        "Penalty":{
-          "Battle":{
-            "Armor":3
+        "Penalty": {
+          "Battle": {
+            "Armor": 3
           }
         }
       },
-      "Reward":{
-        "Iron Rations":1
+      "Reward": {
+        "Iron Rations": 1
       }
     },
     "Blood Altar Room": {
       "Quest": "Risen from the Mire",
-      "Level":3,
-      "Light":2,
-      "Alert":true,
-      "Special":{
-        "Cost":{
-          "Wound":1
+      "Level": 3,
+      "Light": 2,
+      "Alert": true,
+      "Special": {
+        "Cost": {
+          "Wound": 1
         },
-        "Light":-1,
-        "Text":"You may take 1 or more [Wound] to reduce this room's [Light] by 1 for each [Wound] taken."
+        "Light": -1,
+        "Text": "You may take 1 or more [Wound] to reduce this room's [Light] by 1 for each [Wound] taken."
       },
-      "Battle":{
-        "Health":2
+      "Battle": {
+        "Health": 2
       },
-      "Reward":{
-        "XP":2
+      "Reward": {
+        "XP": 2
       },
-      "After Battle":{
-        "Return":0
+      "After Battle": {
+        "Return": 0
       }
     },
     "The Lich's Tomb": {
       "Quest": "Risen from the Mire",
-      "Level":3,
-      "Light":1,
-      "Battle":{
-        "Health":"Special",
+      "Level": 3,
+      "Light": 1,
+      "Battle": {
+        "Health": "Special",
       },
-      "Special":{
-        "Text":"Roll 2d6. +[Health] = the lower value rolled, or the total value if you rolled doubles."
+      "Special": {
+        "Text": "Roll 2d6. +[Health] = the lower value rolled, or the total value if you rolled doubles."
       },
-      "Reward":{
-        "XP":3
+      "Reward": {
+        "XP": 3
       },
-      "After Battle":{
-        "Return":0
+      "After Battle": {
+        "Return": 0
       }
     },
     "Air Temple": {
       "Quest": "At the Foundations of the World",
-      "Level":1,
-      "Light":0,
-      "Battle":{
-        "Magic Resistance":1
+      "Level": 1,
+      "Light": 0,
+      "Battle": {
+        "Magic Resistance": 1
       },
-      "Spoils":{
-        "Buy":{
-          "Item":1
+      "Spoils": {
+        "Buy": {
+          "Item": 1
         }
       }
     },
     "Water Temple": {
       "Quest": "At the Foundations of the World",
-      "Level":1,
-      "Light":1,
-      "Special":{
-        "Text":"Refill this room from the other [I] room. Then, refill that room from the Monster deck."
+      "Level": 1,
+      "Light": 1,
+      "Special": {
+        "Text": "Refill this room from the other [I] room. Then, refill that room from the Monster deck."
       },
-      "Reward":{
-        "Iron Rations":1
+      "Reward": {
+        "Iron Rations": 1
       }
     },
     "Earth Temple": {
       "Quest": "At the Foundations of the World",
-      "Level":2,
-      "Light":1,
-      "Special":{
-        "Requires":{
-          "Text":"If your total Attack ([Physical] + [Magic]) exceeds this Monster's [Health] by 3 or more, you have +1 HP."
+      "Level": 2,
+      "Light": 1,
+      "Special": {
+        "Requires": {
+          "Text": "If your total Attack ([Physical] + [Magic]) exceeds this Monster's [Health] by 3 or more, you have +1 HP."
         },
-        "Reward":{
-          "HP":1
+        "Reward": {
+          "HP": 1
         }
       }
     },
     "Fire Temple": {
       "Quest": "At the Foundations of the World",
-      "Level":2,
-      "Light":0,
-      "Battle":{
-        "Weapons":{
-          "Skill":2
+      "Level": 2,
+      "Light": 0,
+      "Battle": {
+        "Weapons": {
+          "Skill": 2
         },
-        "Wound":1
+        "Wound": 1
       },
-      "Reward":{
-        "Lantern":2
+      "Reward": {
+        "Lantern": 2
       }
     },
     "Abyssal Temple": {
       "Quest": "At the Foundations of the World",
-      "Level":3,
-      "Light":2,
-      "After Battle":{
-        "Text":"Refill this room face down. Turn this room's Monster face up before a battle here; if it is not defeated put it at the bottom of its deck."
+      "Level": 3,
+      "Light": 2,
+      "After Battle": {
+        "Text": "Refill this room face down. Turn this room's Monster face up before a battle here; if it is not defeated put it at the bottom of its deck."
       },
-      "Spoils":{
-        "Return":0,
-        "XP":"Special",
-        "Text":"Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
+      "Spoils": {
+        "Return": 0,
+        "XP": "Special",
+        "Text": "Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
       },
-      "Special":{
-        "Cost":{
-          "Return":0
+      "Special": {
+        "Cost": {
+          "Return": 0
         },
-        "XP":"Special",
-        "Text":"Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
+        "XP": "Special",
+        "Text": "Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
       }
     },
     "Celestial Temple": {
