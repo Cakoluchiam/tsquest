@@ -711,7 +711,8 @@
       },
       "Battle": {
         "Health": 2
-      }, 
+      },
+      "test":"test",
       "Reward": {
         "XP": 2
       },
