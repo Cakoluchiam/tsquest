@@ -17,25 +17,51 @@
 </head>
 <body>
   <section id="group_selector">
-    <button id="choose_heroes" type="button" class="generate">Choose Heroes</button> <span id="hero_choices"></span>
+    <button id="choose_heroes_classed" type="button" class="generate">Choose Heroes (4 Classes)</button>
+    <button id="choose_heroes_random" type="button" class="generate">(Random)</button>
     <br>
-    <button id="choose_items" type="button" class="generate">Choose Items</button> <span id="item_choices"></span>
+    <span id="hero_choices"></span>
     <br>
-    <button id="choose_spells" type="button" class="generate">Choose Spells</button> <span id="spell_choices"></span>
+    <button id="choose_marketplace" type="button" class="generate">Choose Marketplace</button>
+    <button id="choose_items" type="button" class="generate">(4 Items)</button>
+    <button id="choose_spells" type="button" class="generate">(4 Spells)</button>
+    <button id="choose_weapons" type="button" class="generate">(4 Weapons)</button>
     <br>
-    <button id="choose_weapons" type="button" class="generate">Choose Weapons</button> <span id="weapon_choices"></span>
+    <ul>
+      <li>Items</li>
+      <span id="item_choices"></span>
+      <li>Spells</li>
+      <span id="spell_choices"></span>
+      <li>Weapons</li>
+      <span id="weapon_choices"></span>
+    </ul>
     <br>
-    <button id="choose_monsters_random" type="button" class="generate">Choose Monsters (Random)</button> <span id="monster_choices"></span>
+    <button id="choose_monsters_leveled" type="button" class="generate">Choose Monsters (Leveled)</button>
+    <button id="choose_monsters_random" type="button" class="disabled generate">(Random)</button>
     <br>
-    <button id="choose_rooms_random" type="button" class="generate">Choose Rooms (Random)</button> <span id="room_choices"></span>
+    <span id="monster_choices"></span>
     <br>
-    <button id="choose_guardian" type="button" class="generate">Choose Guardian</button> <span id="guardian_choice"></span>
+    <button id="choose_rooms_leveled" type="button" class="generate">Choose Rooms (Leveled)</button>
+    <button id="choose_rooms_random" type="button" class="disabled generate">(Random)</button>
+    <br>
+    <span id="room_choices"></span>
+    <br>
+    <button id="choose_guardian" type="button" class="generate">Choose Guardian</button>
+    <br>
+    <span id="guardian_choice"></span>
     <br>
     Coming Soon:
-    <br>
-    <button id="choose_monsters_leveled" type="button" class="disabled generate" disabled="disabled">Choose Monsters (Leveled)</button>
-    <br>
-    <button id="choose_rooms_leveled" type="button" class="disabled generate" disabled="disabled">Choose Rooms (Leveled)</button>
+    <ul>
+      <li>
+        Heroes chosen by class
+      </li>
+      <li>
+        Filter by Quest/Set
+      </li>
+      <li>
+        More card/room info…
+      </li>
+    </ul>
   </section>
   <div id="output"></div>
   <script src="thunderstone.js"></script>

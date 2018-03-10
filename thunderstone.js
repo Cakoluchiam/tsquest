@@ -19,6 +19,8 @@ $(function() {
   var monster_options;
   var guardian_options;
   var room_options;
+  var monster_options_leveled = {};
+  var room_options_leveled = {};
 
   $.getJSON("enums.json",function(data){
     cs = data;
@@ -45,6 +47,26 @@ $(function() {
     monster_options = cards.Monsters;
     guardian_options = cards.Guardians;
     room_options = cards["Dungeon Rooms"];
+
+    var keys;
+    var level;
+    for(level = 1; level <= 3; level += 1) {
+      keys = Object.keys(monster_options).filter(function(e){
+        return (monster_options[e].Level === level);
+      });
+      monster_options_leveled[level] = {};
+      keys.forEach(function(key){
+        monster_options_leveled[level][key] = monster_options[key];
+      });
+
+      keys = Object.keys(room_options).filter(function(e){
+        return (room_options[e].Level === level);
+      });
+      room_options_leveled[level] = {};
+      keys.forEach(function(key){
+        room_options_leveled[level][key] = room_options[key];
+      });
+    }
     log(null,"Cards loaded:",cards);
   }).fail(function() {
     cards = getCards();
@@ -55,7 +77,29 @@ $(function() {
     monster_options = cards.Monsters;
     guardian_options = cards.Guardians;
     room_options = cards["Dungeon Rooms"];
-    log(null,"Could not load cards from file.",cards)
+
+    var keys;
+    var level;
+    for(level = 1; level <= 3; level += 1) {
+      keys = Object.keys(monster_options).filter(function(e){
+        return (monster_options[e].Level === level);
+      });
+      monster_options_leveled[level] = {};
+      keys.forEach(function(key){
+        monster_options_leveled[level][key] = monster_options[key];
+      });
+
+      keys = Object.keys(room_options).filter(function(e){
+        return (room_options[e].Level === level);
+      });
+      room_options_leveled[level] = {};
+      keys.forEach(function(key){
+        room_options_leveled[level][key] = room_options[key];
+      });
+    }
+
+    log(null,"Could not load cards from file.",cards);
+    log(null,"Leveled Monsters:",monster_options_leveled,"Leveled Rooms:",room_options_leveled);
   });
 
   $(".generate").button();
@@ -64,42 +108,66 @@ $(function() {
     event.preventDefault();
   });
 
-  $("#choose_heroes").click(function(event){
-    log("#hero_choices",choose(4,hero_options).join(', '));
+  $("#choose_heroes_classed").click(function(event){
+    log("#hero_choices",'<ul><li>Coming soon…</li></ul>')
+    // log("#hero_choices",'<ul><li>'+choose(4,hero_options).join('</li><li>')+'</li></ul>');
+  });
+
+  $("#choose_heroes_random").click(function(event){
+    log("#hero_choices",'<ul><li>'+choose(4,hero_options).join('</li><li>')+'</li></ul>');
+  });
+
+  $("#choose_marketplace").click(function(event){
+    var market = [2,2,2];
+    market[Math.floor(Math.random()*3)] += 1;
+    market[Math.floor(Math.random()*3)] += 1;
+    log("#item_choices",'<ul><li>'+choose(market[0],item_options).join('</li><li>')+'</li></ul>');
+    log("#spell_choices",'<ul><li>'+choose(market[1],spell_options).join('</li><li>')+'</li></ul>');
+    log("#weapon_choices",'<ul><li>'+choose(market[2],weapon_options).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_items").click(function(event){
-    log("#item_choices",choose(4,item_options).join(', '));
+    log("#item_choices",'<ul><li>'+choose(4,item_options).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_spells").click(function(event){
-    log("#spell_choices",choose(4,spell_options).join(', '));
+    log("#spell_choices",'<ul><li>'+choose(4,spell_options).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_weapons").click(function(event){
-    log("#weapon_choices",choose(4,weapon_options).join(', '));
+    log("#weapon_choices",'<ul><li>'+choose(4,weapon_options).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_monsters_random").click(function(event){
-    log("#monster_choices",choose(3,monster_options).join(', '));
+    log("#monster_choices",'<ul><li>'+choose(3,monster_options).map(function(e){
+      return e + ' (' + monster_options[e].Level + ')';
+    }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_guardian").click(function(event){
-    log("#guardian_choice",choose(1,guardian_options).join(', '));
+    log("#guardian_choice",'<ul><li>'+choose(1,guardian_options).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_rooms_random").click(function(event){
-    log("#room_choices",choose(6,room_options).join(', '));
+    log("#room_choices",'<ul><li>'+choose(6,room_options).map(function(e){
+      return e + ' (' + room_options[e].Level + ')';
+    }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_monsters_leveled").click(function(event){
-    log(null,"Coming soon⁢…");
-    // log(null,choose(3,monster_options).join(', '));
+    log("#monster_choices",'<ul><li>'+choose(1,monster_options_leveled[1]).concat(
+             choose(1,monster_options_leveled[2])).concat(
+             choose(1,monster_options_leveled[3])).map(function(e){
+              return e + ' (' + monster_options[e].Level + ')';
+             }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_rooms_leveled").click(function(event){
-    log(null,"Coming soon⁢…");
-    // log(null,choose(4,monster_options).join(', '));
+    log("#room_choices",'<ul><li>'+choose(2,room_options_leveled[1]).concat(
+             choose(2,room_options_leveled[2])).concat(
+             choose(2,room_options_leveled[3])).map(function(e){
+              return e + ' (' + room_options[e].Level + ')';
+             }).join('</li><li>')+'</li></ul>');
   });
 
   // `from` is an object whose keys will be selected
@@ -783,97 +851,256 @@ function getCards(){
                 },
                 "Monsters": {
                   "Black Rock Bandits": {
-                    "Quest": "Bandits of Black Rock"
+                    "Quest": "Bandits of Black Rock",
+                    "Level": 1,
+                    "Types": [
+                      "Humanoid"
+                    ],
+                    "Summary": "They attack your Marketplace cards."
                   },
                   "Kobold Skirmishers": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Level": 1,
+                    "Types": [
+                      "Humanoid"
+                    ],
+                    "Alert": true
                   },
                   "Goblin Grunts": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Level": 1,
+                    "Types": [
+                      "Humanoid",
+                    ]
                   },
                   "Hobgoblin Brutes": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Level": 2,
+                    "Types": [
+                      "Humanoid"
+                    ],
+                    "Summary": "They attack Heroes and their equipment."
                   },
                   "Spider Terrors": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Level": 2,
+                    "Types": [
+                      "Giant",
+                      "Vermin"
+                    ],
+                    "Summary": "They wound heavily ([Wound] and [Festering]) and are drawn to equipment."
                   },
                   "Ancient Adventurers": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Level": 3,
+                    "Types": [
+                      "Undead"
+                    ]
                   },
                   "Goblin King's Guard": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Level": 3,
+                    "Types": [
+                      "Humanoid"
+                    ]
                   },
                   "Twisted Creatures": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Level": 1,
+                    "Types": [
+                      "Beast"
+                    ]
                   },
                   "Woodland Sprites": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Level": 1,
+                    "Types": [
+                      "Fey"
+                    ],
+                    "Summary": "They deal Festering Wounds ([Festering])."
                   },
                   "Corrupted Elves": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Level": 2,
+                    "Types": [
+                      "Humanoid"
+                    ],
+                    "Summary": "Destroy your [XP] or suffer their wrath."
                   },
                   "Foundational Keepers": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Level": 2,
+                    "Types": [
+                      "Elemental",
+                      "Giant",
+                      "Humanoid"
+                    ],
+                    "Summary": "These Ogres attack as soon as they refill the Dungeon (but not at game setup)."
                   },
                   "Corrupted Centaurs": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Level": 3,
+                    "Types": [
+                      "Beast",
+                      "Humanoid"
+                    ],
+                    "Summary": "They are each susceptible to a particular Class, but resilient against others."
                   },
                   "Treefolk": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Level": 3,
+                    "Types": [
+                      "Giant",
+                      "Plant"
+                    ],
+                    "Summary": "They are worth much more if you defeat them convincingly."
                   },
                   "Ensnaring Vines": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Level": 1,
+                    "Types": [
+                      "Plant"
+                    ],
+                    "Alert": true
                   },
                   "Bog Zombies": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Level": 1,
+                    "Types": [
+                      "Undead"
+                    ],
+                    "Summary": "They deal Festering Wounds ([Festering])."
                   },
                   "Chaos Lizards": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Level": 2,
+                    "Types": [
+                      "Humanoid"
+                    ],
+                    "Summary": "They discard your cards based on the outcome of dice rolls."
                   },
                   "Moor Skeletons": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Level": 2,
+                    "Types": [
+                      "Undead"
+                    ],
+                    "Summary": "They deal [Festering] and are resistant to [Physical Attack] and [Edged Weapons]."
                   },
                   "Marsh Trolls": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Level": 3,
+                    "Types": [
+                      "Giant"
+                    ],
+                    "Summary": "They have immunities to different cards."
                   },
                   "Swamp Spirits": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Level": 3,
+                    "Types": [
+                      "Undead"
+                    ],
+                    "Summary": "They hunger for (attack) your [Heroes]."
                   },
                   "Air Servitors": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Level": 1,
+                    "Types": [
+                      "Elemental"
+                    ],
+                    "Summary": "They tend to be vulnerable to [Magic Attack]"
                   },
                   "Water Servitors": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Level": 1,
+                    "Types": [
+                      "Elemental"
+                    ],
+                    "Summary": "They move throughout the dungeon making it unpredictable.",
+                    "Alert": true
                   },
                   "Earth Servitors": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Level": 2,
+                    "Types": [
+                      "Elemental"
+                    ],
+                    "Summary": "They are strong against [Physical Attack]."
                   },
                   "Fire Servitors": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Level": 2,
+                    "Types": [
+                      "Elemental"
+                    ],
+                    "Summary": "They attack your [Skill] and Weapons."
                   },
                   "Divine Founders": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Level": 3,
+                    "Types": [
+                      "Elemental",
+                      "Celestial"
+                    ],
+                    "Summary": "They judge (attack) your Heroes harshly."
                   },
                   "Abyssal Founders": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Level": 3,
+                    "Types": [
+                      "Elemental",
+                      "Demon"
+                    ],
+                    "Summary": "The chaotic nature of their dice rolls make them unpredicatble. [sic]"
                   },
                   "Doomknights": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 1,
+                    "Types": [
+                      "Undead"
+                    ],
+                    "Summary": "They attack Heroes who try to move through their room."
                   },
                   "Gnoll Raiders": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 1,
+                    "Types": [
+                      "Humanoid"
+                    ],
+                    "Summary": "They destroy your Weapons and Gear."
                   },
                   "Minions of Chaos": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 2,
+                    "Types": [
+                      "Demon"
+                    ],
+                    "Summary": "They destroy your Heroes based on the outcome of dice rolls."
                   },
                   "Torments": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 2,
+                    "Types": [
+                      "Elemental"
+                    ],
+                    "Summary": "They are strong against [Magic Attack]."
                   },
                   "Ancient Wyrms": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 3,
+                    "Types": [
+                      "Dragon"
+                    ],
+                    "Summary": "They like to snack on (attack) your Heroes."
                   },
                   "Ancient Protectors": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 3,
+                    "Types": [
+                      "Golem"
+                    ],
+                    "Summary": "They are immune to Heroes with low [Skill]."
                   }
                 },
                 "Guardians": {

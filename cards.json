@@ -332,97 +332,256 @@
   },
   "Monsters": {
     "Black Rock Bandits": {
-      "Quest": "Bandits of Black Rock"
+      "Quest": "Bandits of Black Rock",
+      "Level": 1,
+      "Types": [
+        "Humanoid"
+      ],
+      "Summary": "They attack your Marketplace cards."
     },
     "Kobold Skirmishers": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Level": 1,
+      "Types": [
+        "Humanoid"
+      ],
+      "Alert": true
     },
     "Goblin Grunts": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Level": 1,
+      "Types": [
+        "Humanoid",
+      ]
     },
     "Hobgoblin Brutes": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Level": 2,
+      "Types": [
+        "Humanoid"
+      ],
+      "Summary": "They attack Heroes and their equipment."
     },
     "Spider Terrors": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Level": 2,
+      "Types": [
+        "Giant",
+        "Vermin"
+      ],
+      "Summary": "They wound heavily ([Wound] and [Festering]) and are drawn to equipment."
     },
     "Ancient Adventurers": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Level": 3,
+      "Types": [
+        "Undead"
+      ]
     },
     "Goblin King's Guard": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Level": 3,
+      "Types": [
+        "Humanoid"
+      ]
     },
     "Twisted Creatures": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Level": 1,
+      "Types": [
+        "Beast"
+      ]
     },
     "Woodland Sprites": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Level": 1,
+      "Types": [
+        "Fey"
+      ],
+      "Summary": "They deal Festering Wounds ([Festering])."
     },
     "Corrupted Elves": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Level": 2,
+      "Types": [
+        "Humanoid"
+      ],
+      "Summary": "Destroy your [XP] or suffer their wrath."
     },
     "Foundational Keepers": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Level": 2,
+      "Types": [
+        "Elemental",
+        "Giant",
+        "Humanoid"
+      ],
+      "Summary": "These Ogres attack as soon as they refill the Dungeon (but not at game setup)."
     },
     "Corrupted Centaurs": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Level": 3,
+      "Types": [
+        "Beast",
+        "Humanoid"
+      ],
+      "Summary": "They are each susceptible to a particular Class, but resilient against others."
     },
     "Treefolk": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Level": 3,
+      "Types": [
+        "Giant",
+        "Plant"
+      ],
+      "Summary": "They are worth much more if you defeat them convincingly."
     },
     "Ensnaring Vines": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Level": 1,
+      "Types": [
+        "Plant"
+      ],
+      "Alert": true
     },
     "Bog Zombies": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Level": 1,
+      "Types": [
+        "Undead"
+      ],
+      "Summary": "They deal Festering Wounds ([Festering])."
     },
     "Chaos Lizards": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Level": 2,
+      "Types": [
+        "Humanoid"
+      ],
+      "Summary": "They discard your cards based on the outcome of dice rolls."
     },
     "Moor Skeletons": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Level": 2,
+      "Types": [
+        "Undead"
+      ],
+      "Summary": "They deal [Festering] and are resistant to [Physical Attack] and [Edged Weapons]."
     },
     "Marsh Trolls": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Level": 3,
+      "Types": [
+        "Giant"
+      ],
+      "Summary": "They have immunities to different cards."
     },
     "Swamp Spirits": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Level": 3,
+      "Types": [
+        "Undead"
+      ],
+      "Summary": "They hunger for (attack) your [Heroes]."
     },
     "Air Servitors": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Level": 1,
+      "Types": [
+        "Elemental"
+      ],
+      "Summary": "They tend to be vulnerable to [Magic Attack]"
     },
     "Water Servitors": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Level": 1,
+      "Types": [
+        "Elemental"
+      ],
+      "Summary": "They move throughout the dungeon making it unpredictable.",
+      "Alert": true
     },
     "Earth Servitors": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Level": 2,
+      "Types": [
+        "Elemental"
+      ],
+      "Summary": "They are strong against [Physical Attack]."
     },
     "Fire Servitors": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Level": 2,
+      "Types": [
+        "Elemental"
+      ],
+      "Summary": "They attack your [Skill] and Weapons."
     },
     "Divine Founders": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Level": 3,
+      "Types": [
+        "Elemental",
+        "Celestial"
+      ],
+      "Summary": "They judge (attack) your Heroes harshly."
     },
     "Abyssal Founders": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Level": 3,
+      "Types": [
+        "Elemental",
+        "Demon"
+      ],
+      "Summary": "The chaotic nature of their dice rolls make them unpredicatble. [sic]"
     },
     "Doomknights": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Level": 1,
+      "Types": [
+        "Undead"
+      ],
+      "Summary": "They attack Heroes who try to move through their room."
     },
     "Gnoll Raiders": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Level": 1,
+      "Types": [
+        "Humanoid"
+      ],
+      "Summary": "They destroy your Weapons and Gear."
     },
     "Minions of Chaos": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Level": 2,
+      "Types": [
+        "Demon"
+      ],
+      "Summary": "They destroy your Heroes based on the outcome of dice rolls."
     },
     "Torments": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Level": 2,
+      "Types": [
+        "Elemental"
+      ],
+      "Summary": "They are strong against [Magic Attack]."
     },
     "Ancient Wyrms": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Level": 3,
+      "Types": [
+        "Dragon"
+      ],
+      "Summary": "They like to snack on (attack) your Heroes."
     },
     "Ancient Protectors": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Level": 3,
+      "Types": [
+        "Golem"
+      ],
+      "Summary": "They are immune to Heroes with low [Skill]."
     }
   },
   "Guardians": {
