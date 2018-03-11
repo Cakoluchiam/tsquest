@@ -1,106 +1,419 @@
 {
   "Heroes": {
     "Outlands": {
-      "Quest": "Promos"
+      "Quest": "Promos",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost":7,
+      "Attack": "Physical"
     },
     "Stalker": {
-      "Quest": "Promos"
+      "Quest": "Promos",
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Rogue"
+      ],
+      "Cost": 6,
+      "Attack": "Physical",
+      "Gold": true,
+      "Summary": "Stalker uses Gear tokens for strength and provides [Light] at [III]."
     },
     "The Yellow Knight": {
-      "Quest": "Promos"
+      "Quest": "Promos",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 8,
+      "Attack": "Physical"
     },
     "Edlin": {
-      "Quest": "Bandits of Black Rock"
+      "Quest": "Bandits of Black Rock",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 6,
+      "Attack": "Physical"
     },
     "Gorlandor": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 7,
+      "Attack": "Physical"
     },
     "Hawkswood": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Races": [
+        "Avian",
+        "Elf"
+      ],
+      "Classes": [
+        "Rogue"
+      ],
+      "Cost": 6,
+      "Attack": "Physical",
+      "Gold": true,
+      "Light": true
     },
     "Pylorian": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Wizard"
+      ],
+      "Cost": 6,
+      "Attack": "Magic",
+      "Summary": "[Arcane Spell] specialist."
     },
     "Scathian": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Races": [
+        "Halfling"
+      ],
+      "Classes": [
+        "Rogue",
+        "Wizard"
+      ],
+      "Cost": 8,
+      "Attack": "Magic",
+      "Gold": true
     },
     "Silverhelm": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Races": [
+        "Dwarf"
+      ],
+      "Classes": [
+        "Cleric",
+        "Fighter"
+      ],
+      "Cost": 6,
+      "Attack": "Physical"
     },
     "Stormhand": {
-      "Quest": "A Mirror in the Dark"
+      "Quest": "A Mirror in the Dark",
+      "Races": [
+        "Dwarf"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 7,
+      "Attack": "Physical",
+      "Summary": "[Edged Weapon] specialist."
     },
     "Avania": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Races": [
+        "Celestial",
+        "Human"
+      ],
+      "Classes": [
+        "Cleric"
+      ],
+      "Cost": 6,
+      "Attack": "Magic"
     },
     "Brimstone": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Races": [
+        "Dwarf"
+      ],
+      "Classes": [
+        "Rogue"
+      ],
+      "Cost": 8,
+      "Attack": "Physical",
+      "Gold": true,
+      "Light": true,
+      "Summary": "The more [Light] you have, the more powerful Brimstone gets."
     },
     "Ehrlingal": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Races": [
+        "Halfling"
+      ],
+      "Classes": [
+        "Rogue"
+      ],
+      "Cost": 7,
+      "Attack": "Physical",
+      "Gold": true,
+      "Summary": "Ehrlingal provides [Light] at [II] and is a [Dagger] specialist."
     },
     "Felin": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "Cost": 8,
+      "Attack": "Physical",
+      "Light": true,
+      "Summary": "Felin can shapeshift her form, depending on the situation."
     },
     "Gendarme": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Races": [
+        "Dwarf"
+      ],
+      "Classes": [
+        "Wizard"
+      ],
+      "Cost": 6,
+      "Attack": "Magic",
+      "Summary": "Gendarme uses secret Dwarven magic to empower your [Weapons]."
     },
     "Sephilest": {
-      "Quest": "Total Eclipse of the Sun"
+      "Quest": "Total Eclipse of the Sun",
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 8,
+      "Attack": "Physical"
     },
-    "Bahran": {
-      "Quest": "Risen from the Mire"
+    "Baharan": {
+      "Quest": "Risen from the Mire",
+      "Races": [
+        "Triton"
+      ],
+      "Classes": [
+        "Cleric"
+      ],
+      "Cost": 7,
+      "Attack": "Magic",
+      "Summary": "Baharan uses strange magics, allowing you to discard cards for bonuses."
     },
     "Darameric": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Cleric",
+        "Wizard"
+      ],
+      "Cost": 9,
+      "Attack": "Magic"
     },
     "Linsha": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 7,
+      "Attack": "Physical"
     },
     "Markennan": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 7,
+      "Attack": "Physical",
+      "Summary": "[Blunt Weapon] specialist."
     },
     "Nimblefingers": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Rogue"
+      ],
+      "Cost": 8,
+      "Attack": "Physical",
+      "Light": true
     },
     "Regalen": {
-      "Quest": "Risen from the Mire"
+      "Quest": "Risen from the Mire",
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Wizard"
+      ],
+      "Cost": 8,
+      "Attack": "Magic"
     },
     "Darkrend": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Wizard"
+      ],
+      "Cost": 8,
+      "Attack": "Magic",
+      "Summary": "Using forbidden blood magic, Darkrend inflicts [Wound] to power her attacks."
     },
     "Grimwolf": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Races": [
+        "Undead",
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 6,
+      "Attack": "Physical",
+      "Summary": "Risen to complete his mission, Grimwolf bleeds ([Wound]) to power himself."
     },
     "Honormain": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Cleric"
+      ],
+      "Cost": 7,
+      "Attack": "Physical"
     },
     "Jadress": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Rogue"
+      ],
+      "Cost": 6,
+      "Attack": "Physical",
+      "Gold": true,
+      "Summary": "[Bow Weapon] specialist."
     },
     "Moonblades": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Fighter",
+        "Rogue"
+      ],
+      "Attack": "Physical",
+      "Cost": 7,
+      "Gold": true
     },
     "Stormskull": {
-      "Quest": "At the Foundations of the World"
+      "Quest": "At the Foundations of the World",
+      "Races": [
+        "Human",
+        "Orc"
+      ],
+      "Classes": [
+        "Wizard"
+      ],
+      "Cost": 8,
+      "Attack": "Magic",
+      "Light": true
     },
     "Aird": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Rogue"
+      ],
+      "Cost": 6,
+      "Attack": "Physical",
+      "Gold": true,
+      "Summary": "Aird uses your opponents' strengths against them."
     },
     "Arcanian": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Wizard"
+      ],
+      "Cost": 8,
+      "Attack": "Magic",
+      "Summary": "Arcanian's sorcery changes dice rolls. She also provides [Light] at [II]."
     },
     "Dunardic": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ],
+      "Cost": 6,
+      "Attack": "Physical",
+      "Summary": "Once a Town Guard, Dunardic uses your [XP] as a resource."
     },
     "Regian": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Cleric"
+      ],
+      "Cost": 7,
+      "Attack": "Magic"
     },
     "Terakian": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Cleric",
+        "Fighter"
+      ],
+      "Cost": 8,
+      "Attack": "Physical",
+      "Summary": "[Potion] specialist."
     },
     "Veris": {
-      "Quest": "Ripples in Time"
+      "Quest": "Ripples in Time",
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Wizard"
+      ],
+      "Cost": 7,
+      "Attack": "Magic",
+      "Light": true,
+      "Summary": "Veris has the ability to make [Weapons] glow bright."
     }
   },
   "Items": {
