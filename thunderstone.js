@@ -10,22 +10,71 @@ $(function() {
   };
   var cs;
   var sets;
-  var cards;
+  var groups;
 
-  var hero_options;
-  var spell_options;
-  var item_options;
-  var weapon_options;
-  var monster_options;
-  var guardian_options;
-  var room_options;
-  var monster_options_leveled = {};
-  var room_options_leveled = {};
-  var hero_options_classes = {
-    "Rogue": {},
-    "Fighter": {},
-    "Wizard": {},
-    "Cleric": {}
+  var options = {
+    Heroes: {
+      All: {},
+      Cleric: {},
+      Fighter: {},
+      Rogue: {},
+      Wizard: {}
+    },
+    Marketplace: {
+      All: {},
+      Spells: {},
+      Items: {},
+      Weapons: {}
+    },
+    Monsters: {
+      All: {},
+      1: {},
+      2: {},
+      3: {}
+    },
+    Guardians: {
+      All: {}
+    },
+    "Dungeon Rooms": {
+      All: {},
+      1: {},
+      2: {},
+      3: {}
+    },
+  };
+
+  var getCard = function(thing, type) {
+    return groups[type][thing];
+  };
+
+  var toggle = function(type,on) {
+    if(type === "Heroes") {
+      return function(hero) {
+        options.Heroes.All[hero] = on;
+        getCard(hero,"Heroes").Classes.forEach(function(type) {
+          options.Heroes[type][hero] = on;
+        });
+      };
+    } else if(type === "Monsters" || type === "Dungeon Rooms") {
+      return function(thing) {
+        options[type].All[thing] = on;
+        options[type][getCard(thing,type).Level][thing] = on;
+      };
+    } else if(type === "Items" || type === "Spells" || type === "Weapons") {
+      return function(thing) {
+        options.Marketplace.All[thing] = on;
+        options.Marketplace[type][thing] = on;
+      };
+    } else if(type === "Guardians") {
+      return function(thing) {
+        options[type].All[thing] = on;
+      };
+    } else if(["Treasures"].indexOf(type) !== -1) {
+      return function() {};
+    } else {
+      throw new Error("Invalid type: "+type);
+      // return
+    }
   };
 
   $.getJSON("enums.json",function(data){
@@ -44,93 +93,22 @@ $(function() {
     log(null,"Could not load sets from file.",sets);
   });
 
+  var parseGroups = function(data) {
+    Object.keys(data).forEach(function(group) {
+      Object.keys(data[group]).forEach(toggle(group,true));
+    });
+    log(null,"Options:",options);
+  };
+
+  // TODO: database the cards separately from their groups
   $.getJSON("cards.json",function(data){
-    cards = data;
-    hero_options = cards.Heroes;
-    spell_options = cards.Spells;
-    item_options = cards.Items;
-    weapon_options = cards.Weapons;
-    monster_options = cards.Monsters;
-    guardian_options = cards.Guardians;
-    room_options = cards["Dungeon Rooms"];
-
-    Object.keys(hero_options).forEach(function(hero) {
-      //
-      hero_options[hero].Classes.forEach(function(hero_class) {
-        hero_options_classes[hero_class][hero] = hero_options[hero];
-      });
-    });
-
-    log(null,"Hero Classes:",hero_options_classes);
-
-    var keys;
-    var level;
-    var testMonsterLevel = function(e){
-      return (monster_options[e].Level === level);
-    };
-    var testRoomLevel = function(e){
-      return (room_options[e].Level === level);
-    };
-    var addLeveledMonster = function(key){
-      monster_options_leveled[level][key] = monster_options[key];
-    };
-    var addLeveledRoom = function(key){
-      room_options_leveled[level][key] = room_options[key];
-    };
-    for(level = 1; level <= 3; level += 1) {
-      keys = Object.keys(monster_options).filter(testMonsterLevel);
-      monster_options_leveled[level] = {};
-      keys.forEach(addLeveledMonster);
-
-      keys = Object.keys(room_options).filter(testRoomLevel);
-      room_options_leveled[level] = {};
-      keys.forEach(addLeveledRoom);
-    }
-    log(null,"Cards loaded:",cards);
+    groups = data;
+    parseGroups(groups);
+    log(null,"Cards loaded:",groups);
   }).fail(function() {
-    cards = getCards();
-    hero_options = cards.Heroes;
-    spell_options = cards.Spells;
-    item_options = cards.Items;
-    weapon_options = cards.Weapons;
-    monster_options = cards.Monsters;
-    guardian_options = cards.Guardians;
-    room_options = cards["Dungeon Rooms"];
-
-    Object.keys(hero_options).forEach(function(hero) {
-      //
-      hero_options[hero].Classes.forEach(function(hero_class) {
-        hero_options_classes[hero_class][hero] = hero_options[hero];
-      });
-    });
-
-    log(null,"Hero Classes:",hero_options_classes);
-
-    var keys;
-    var level;
-    var testMonsterLevel = function(e){
-      return (monster_options[e].Level === level);
-    };
-    var testRoomLevel = function(e){
-      return (room_options[e].Level === level);
-    };
-    var addLeveledMonster = function(key){
-      monster_options_leveled[level][key] = monster_options[key];
-    };
-    var addLeveledRoom = function(key){
-      room_options_leveled[level][key] = room_options[key];
-    };
-    for(level = 1; level <= 3; level += 1) {
-      keys = Object.keys(monster_options).filter(testMonsterLevel);
-      monster_options_leveled[level] = {};
-      keys.forEach(addLeveledMonster);
-
-      keys = Object.keys(room_options).filter(testRoomLevel);
-      room_options_leveled[level] = {};
-      keys.forEach(addLeveledRoom);
-    }
-    log(null,"Could not load cards from file.",cards,arguments);
-    log(null,"Leveled Monsters:",monster_options_leveled,"Leveled Rooms:",room_options_leveled);
+    groups = getCards();
+    log(null,"Could not load groups from file.",groups);
+    parseGroups(groups);
   });
 
   $(".generate").button();
@@ -141,10 +119,10 @@ $(function() {
 
   $("#choose_heroes_classed").click(function(event){
     var choices = {
-      Cleric: choose(1,hero_options_classes.Cleric)[0],
-      Fighter: choose(1,hero_options_classes.Fighter)[0],
-      Rogue: choose(1,hero_options_classes.Rogue)[0],
-      Wizard: choose(1,hero_options_classes.Wizard)[0]
+      Cleric: choose(1,options.Heroes.Cleric)[0],
+      Fighter: choose(1,options.Heroes.Fighter)[0],
+      Rogue: choose(1,options.Heroes.Rogue)[0],
+      Wizard: choose(1,options.Heroes.Wizard)[0]
     };
 
     var classes;
@@ -162,80 +140,80 @@ $(function() {
 
       if(choices[class1] === choices[class2]) {
         log(null,"Chose "+choices[class1]+" for both "+class1+" and "+class2+".");
-        if(Object.keys(hero_options_classes[class1]).length < 2) {
-          if(Object.keys(hero_options_classes[class2]).length < 2) {
+        if(Object.keys(options.Heroes[class1]).length < 2) {
+          if(Object.keys(options.Heroes[class2]).length < 2) {
             throw new Error("Cannot choose different heroes for "+class1+" and "+class2+"; "+choices[class1]+" is the only hero of both classes.");
           } else {
-            choices[class2] = choose(1,hero_options_classes[class2])[0];
+            choices[class2] = choose(1,options.Heroes[class2])[0];
           }
         } else {
-          choices[class1] = choose(1,hero_options_classes[class1])[0];
+          choices[class1] = choose(1,options.Heroes[class1])[0];
         }
       }
     }
 
     log("#hero_choices",'<ul><li>'+
       [choices.Cleric, choices.Fighter, choices.Rogue, choices.Wizard].map(function(hero) {
-      return hero + ' (' + hero_options[hero].Classes.join(', ') + ')';
+      return hero + ' (' + getCard(hero,"Heroes").Classes.join(', ') + ')';
     }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_heroes_random").click(function(event){
-    log("#hero_choices",'<ul><li>'+choose(4,hero_options).map(function(hero) {
-      return hero + ' (' + hero_options[hero].Classes.join(', ') + ')';
-    }).join('</li><li>')+'</li></ul>');
+    log("#hero_choices",'<ul><li>'+choose(4,options.Heroes.All).map(function(hero) {
+      return hero + ' (' + getCard(hero,"Heroes").Classes.join(', ') + ')';
+      }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_marketplace").click(function(event){
     var market = [2,2,2];
     market[Math.floor(Math.random()*3)] += 1;
     market[Math.floor(Math.random()*3)] += 1;
-    log("#item_choices",'<ul><li>'+choose(market[0],item_options).join('</li><li>')+'</li></ul>');
-    log("#spell_choices",'<ul><li>'+choose(market[1],spell_options).join('</li><li>')+'</li></ul>');
-    log("#weapon_choices",'<ul><li>'+choose(market[2],weapon_options).join('</li><li>')+'</li></ul>');
+    log("#item_choices",'<ul><li>'+choose(market[0],options.Marketplace.Items).join('</li><li>')+'</li></ul>');
+    log("#spell_choices",'<ul><li>'+choose(market[1],options.Marketplace.Spells).join('</li><li>')+'</li></ul>');
+    log("#weapon_choices",'<ul><li>'+choose(market[2],options.Marketplace.Weapons).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_items").click(function(event){
-    log("#item_choices",'<ul><li>'+choose(4,item_options).join('</li><li>')+'</li></ul>');
+    log("#item_choices",'<ul><li>'+choose(4,options.Marketplace.Items).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_spells").click(function(event){
-    log("#spell_choices",'<ul><li>'+choose(4,spell_options).join('</li><li>')+'</li></ul>');
+    log("#spell_choices",'<ul><li>'+choose(4,options.Marketplace.Spells).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_weapons").click(function(event){
-    log("#weapon_choices",'<ul><li>'+choose(4,weapon_options).join('</li><li>')+'</li></ul>');
+    log("#weapon_choices",'<ul><li>'+choose(4,options.Marketplace.Weapons).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_monsters_random").click(function(event){
-    log("#monster_choices",'<ul><li>'+choose(3,monster_options).map(function(e){
-      return e + ' (' + monster_options[e].Level + ')';
+    log("#monster_choices",'<ul><li>'+choose(3,options.Monsters.All).map(function(e){
+      return e + ' (' + getCard(e,"Monsters").Level + ')';
     }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_guardian").click(function(event){
-    log("#guardian_choice",'<ul><li>'+choose(1,guardian_options).join('</li><li>')+'</li></ul>');
+    log("#guardian_choice",'<ul><li>'+choose(1,options.Guardians.All).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_rooms_random").click(function(event){
-    log("#room_choices",'<ul><li>'+choose(6,room_options).map(function(e){
-      return e + ' (' + room_options[e].Level + ')';
+    log("#room_choices",'<ul><li>'+choose(6,options["Dungeon Rooms"].All).map(function(e){
+      return e + ' (' + getCard(e,"Dungeon Rooms").Level + ')';
     }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_monsters_leveled").click(function(event){
-    log("#monster_choices",'<ul><li>'+choose(1,monster_options_leveled[1]).concat(
-             choose(1,monster_options_leveled[2])).concat(
-             choose(1,monster_options_leveled[3])).map(function(e){
-              return e + ' (' + monster_options[e].Level + ')';
+    log("#monster_choices",'<ul><li>'+choose(1,options.Monsters[1]).concat(
+             choose(1,options.Monsters[2])).concat(
+             choose(1,options.Monsters[3])).map(function(e){
+              return e + ' (' + getCard(e,"Monsters").Level + ')';
              }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_rooms_leveled").click(function(event){
-    log("#room_choices",'<ul><li>'+choose(2,room_options_leveled[1]).concat(
-             choose(2,room_options_leveled[2])).concat(
-             choose(2,room_options_leveled[3])).map(function(e){
-              return e + ' (' + room_options[e].Level + ')';
+    log("#room_choices",'<ul><li>'+choose(2,options["Dungeon Rooms"][1]).concat(
+             choose(2,options["Dungeon Rooms"][2])).concat(
+             choose(2,options["Dungeon Rooms"][3])).map(function(e){
+              return e + ' (' + getCard(e,"Dungeon Rooms").Level + ')';
              }).join('</li><li>')+'</li></ul>');
   });
 
