@@ -934,29 +934,6 @@
       "Category": "Weapons"
     }
   },
-  "Treasures": {
-    "Miricelle": {
-      "Quest": "Bandits of Black Rock"
-    },
-    "Stormland Mirror": {
-      "Quest": "A Mirror in the Dark"
-    },
-    "Sun of the Forest": {
-      "Quest": "Total Eclipse of the Sun"
-    },
-    "Elemental Elixir": {
-      "Quest": "Risen from the Mire"
-    },
-    "Elmoran": {
-      "Quest": "At the Foundations of the World"
-    },
-    "Axe of the Giants": {
-      "Quest": "Ripples in Time"
-    },
-    "Lightbringer": {
-      "Quest": "Ripples in Time"
-    }
-  },
   "Monsters": {
     "Black Rock Bandits": {
       "Quest": "Bandits of Black Rock",

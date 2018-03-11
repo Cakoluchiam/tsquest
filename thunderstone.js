@@ -43,40 +43,6 @@ $(function() {
     },
   };
 
-  var getCard = function(thing, type) {
-    return groups[type][thing];
-  };
-
-  var toggle = function(type,on) {
-    if(type === "Heroes") {
-      return function(hero) {
-        options.Heroes.All[hero] = on;
-        getCard(hero,"Heroes").Classes.forEach(function(type) {
-          options.Heroes[type][hero] = on;
-        });
-      };
-    } else if(type === "Monsters" || type === "Dungeon Rooms") {
-      return function(thing) {
-        options[type].All[thing] = on;
-        options[type][getCard(thing,type).Level][thing] = on;
-      };
-    } else if(type === "Items" || type === "Spells" || type === "Weapons") {
-      return function(thing) {
-        options.Marketplace.All[thing] = on;
-        options.Marketplace[type][thing] = on;
-      };
-    } else if(type === "Guardians") {
-      return function(thing) {
-        options[type].All[thing] = on;
-      };
-    } else if(["Treasures"].indexOf(type) !== -1) {
-      return function() {};
-    } else {
-      throw new Error("Invalid type: "+type);
-      // return
-    }
-  };
-
   $.getJSON("enums.json",function(data){
     cs = data;
     log(null,"Enums loaded:",cs);
@@ -101,13 +67,13 @@ $(function() {
   };
 
   // TODO: database the cards separately from their groups
-  $.getJSON("cards.json",function(data){
+  $.getJSON("randomizers.json",function(data){
     groups = data;
     parseGroups(groups);
-    log(null,"Cards loaded:",groups);
+    log(null,"Randomizers loaded:",groups);
   }).fail(function() {
     groups = getCards();
-    log(null,"Could not load groups from file.",groups);
+    log(null,"Could not load randomizers from file.",groups);
     parseGroups(groups);
   });
 
@@ -126,6 +92,7 @@ $(function() {
     };
 
     var classes;
+    var runtime = Date.now();
 
     while(choices.Cleric === choices.Fighter ||
           choices.Cleric === choices.Rogue ||
@@ -133,6 +100,9 @@ $(function() {
           choices.Fighter === choices.Rogue ||
           choices.Fighter === choices.Wizard ||
           choices.Rogue === choices.Wizard) {
+      if(Date.now() - runtime > 1000) {
+        log(null,"Runtime exceeded for rerolling duplicate heroes. Select different filters if you want different choices.");
+      }
       classes = Object.keys(choices);
 
       class1 = classes.splice(Math.floor(Math.random()*4),1);
@@ -142,11 +112,13 @@ $(function() {
         log(null,"Chose "+choices[class1]+" for both "+class1+" and "+class2+".");
         if(Object.keys(options.Heroes[class1]).length < 2) {
           if(Object.keys(options.Heroes[class2]).length < 2) {
-            throw new Error("Cannot choose different heroes for "+class1+" and "+class2+"; "+choices[class1]+" is the only hero of both classes.");
+            throw new Error("Cannot choose different heroes for "+class1+" and "+class2+"; "+choices[class1]+" is the only available hero of both classes.");
           } else {
+            log(null,"Rerolling "+class2);
             choices[class2] = choose(1,options.Heroes[class2])[0];
           }
         } else {
+          log(null,"Rerolling "+class1);
           choices[class1] = choose(1,options.Heroes[class1])[0];
         }
       }
@@ -217,19 +189,55 @@ $(function() {
              }).join('</li><li>')+'</li></ul>');
   });
 
-  // `from` is an object whose keys will be selected
-  // If you want details on an item, use from[choices[i]]
+  // `from` is an object for selecting cards by name
+  // based on whether the value `from[card]` is true.
   function choose(num, from){
     choices = [];
-    from = Object.keys(from);
-    if(from.length < num) {
-      return from;
-    }
+    from = Object.keys(from).filter(function(card) {
+      return from[card];
+    });
 
     while(choices.length < num && from.length > 0) {
       choices.push(from.splice(Math.floor(Math.random()*from.length),1)[0]);
     }
+    while(choices.length < num) {
+      choices.push("\&lt;not enough choices\&gt;");
+    }
     return choices;
+  }
+
+  function getCard(thing, type) {
+    return groups[type][thing];
+  }
+
+  function toggle(type,on) {
+    if(type === "Heroes") {
+      return function(hero) {
+        options.Heroes.All[hero] = on;
+        getCard(hero,"Heroes").Classes.forEach(function(type) {
+          options.Heroes[type][hero] = on;
+        });
+      };
+    } else if(type === "Monsters" || type === "Dungeon Rooms") {
+      return function(thing) {
+        options[type].All[thing] = on;
+        options[type][getCard(thing,type).Level][thing] = on;
+      };
+    } else if(type === "Items" || type === "Spells" || type === "Weapons") {
+      return function(thing) {
+        options.Marketplace.All[thing] = on;
+        options.Marketplace[type][thing] = on;
+      };
+    } else if(type === "Guardians") {
+      return function(thing) {
+        options[type].All[thing] = on;
+      };
+    } else if(["Treasures"].indexOf(type) !== -1) {
+      return function() {};
+    } else {
+      throw new Error("Invalid type: "+type);
+      // return
+    }
   }
 });
 
@@ -575,7 +583,14 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 7,
-                    "Attack": "Physical"
+                    "Types": {
+                      "Fighter": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Stalker": {
                     "Quest": "Promos",
@@ -586,9 +601,16 @@ function getCards(){
                       "Rogue"
                     ],
                     "Cost": 6,
-                    "Attack": "Physical",
-                    "Gold": true,
-                    "Summary": "Stalker uses Gear tokens for strength and provides [Light] at [III]."
+                    "Summary": "Stalker uses Gear tokens for strength and provides [Light] at [III].",
+                    "Types": {
+                      "Rogue": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Gold": true
+                    },
+                    "Category": "Heroes"
                   },
                   "The Yellow Knight": {
                     "Quest": "Promos",
@@ -599,7 +621,14 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 8,
-                    "Attack": "Physical"
+                    "Types": {
+                      "Fighter": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Edlin": {
                     "Quest": "Bandits of Black Rock",
@@ -610,7 +639,14 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 6,
-                    "Attack": "Physical"
+                    "Types": {
+                      "Fighter": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Gorlandor": {
                     "Quest": "A Mirror in the Dark",
@@ -621,7 +657,14 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 7,
-                    "Attack": "Physical"
+                    "Types": {
+                      "Fighter": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Hawkswood": {
                     "Quest": "A Mirror in the Dark",
@@ -633,9 +676,17 @@ function getCards(){
                       "Rogue"
                     ],
                     "Cost": 6,
-                    "Attack": "Physical",
-                    "Gold": true,
-                    "Light": true
+                    "Types": {
+                      "Rogue": true,
+                      "Avian": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Gold": true,
+                      "Light": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Pylorian": {
                     "Quest": "A Mirror in the Dark",
@@ -646,8 +697,15 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 6,
-                    "Attack": "Magic",
-                    "Summary": "[Arcane Spell] specialist."
+                    "Summary": "[Arcane Spell] specialist.",
+                    "Types": {
+                      "Wizard": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Scathian": {
                     "Quest": "A Mirror in the Dark",
@@ -659,8 +717,16 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 8,
-                    "Attack": "Magic",
-                    "Gold": true
+                    "Types": {
+                      "Rogue": true,
+                      "Wizard": true,
+                      "Halfling": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true,
+                      "Gold": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Silverhelm": {
                     "Quest": "A Mirror in the Dark",
@@ -672,7 +738,15 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 6,
-                    "Attack": "Physical"
+                    "Types": {
+                      "Cleric": true,
+                      "Fighter": true,
+                      "Dwarf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Stormhand": {
                     "Quest": "A Mirror in the Dark",
@@ -683,8 +757,15 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 7,
-                    "Attack": "Physical",
-                    "Summary": "[Edged Weapon] specialist."
+                    "Summary": "[Edged Weapon] specialist.",
+                    "Types": {
+                      "Fighter": true,
+                      "Dwarf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Avania": {
                     "Quest": "Total Eclipse of the Sun",
@@ -696,7 +777,15 @@ function getCards(){
                       "Cleric"
                     ],
                     "Cost": 6,
-                    "Attack": "Magic"
+                    "Types": {
+                      "Cleric": true,
+                      "Celestial": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Brimstone": {
                     "Quest": "Total Eclipse of the Sun",
@@ -707,10 +796,17 @@ function getCards(){
                       "Rogue"
                     ],
                     "Cost": 8,
-                    "Attack": "Physical",
-                    "Gold": true,
-                    "Light": true,
-                    "Summary": "The more [Light] you have, the more powerful Brimstone gets."
+                    "Summary": "The more [Light] you have, the more powerful Brimstone gets.",
+                    "Types": {
+                      "Rogue": true,
+                      "Dwarf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Gold": true,
+                      "Light": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Ehrlingal": {
                     "Quest": "Total Eclipse of the Sun",
@@ -721,9 +817,16 @@ function getCards(){
                       "Rogue"
                     ],
                     "Cost": 7,
-                    "Attack": "Physical",
-                    "Gold": true,
-                    "Summary": "Ehrlingal provides [Light] at [II] and is a [Dagger] specialist."
+                    "Summary": "Ehrlingal provides [Light] at [II] and is a [Dagger] specialist.",
+                    "Types": {
+                      "Rogue": true,
+                      "Halfling": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Gold": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Felin": {
                     "Quest": "Total Eclipse of the Sun",
@@ -735,9 +838,17 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 8,
-                    "Attack": "Physical",
-                    "Light": true,
-                    "Summary": "Felin can shapeshift her form, depending on the situation."
+                    "Summary": "Felin can shapeshift her form, depending on the situation.",
+                    "Types": {
+                      "Cleric": true,
+                      "Wizard": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Light": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Gendarme": {
                     "Quest": "Total Eclipse of the Sun",
@@ -748,8 +859,15 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 6,
-                    "Attack": "Magic",
-                    "Summary": "Gendarme uses secret Dwarven magic to empower your [Weapons]."
+                    "Summary": "Gendarme uses secret Dwarven magic to empower your [Weapons].",
+                    "Types": {
+                      "Wizard": true,
+                      "Dwarf": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Sephilest": {
                     "Quest": "Total Eclipse of the Sun",
@@ -760,7 +878,14 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 8,
-                    "Attack": "Physical"
+                    "Types": {
+                      "Fighter": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Baharan": {
                     "Quest": "Risen from the Mire",
@@ -771,8 +896,15 @@ function getCards(){
                       "Cleric"
                     ],
                     "Cost": 7,
-                    "Attack": "Magic",
-                    "Summary": "Baharan uses strange magics, allowing you to discard cards for bonuses."
+                    "Summary": "Baharan uses strange magics, allowing you to discard cards for bonuses.",
+                    "Types": {
+                      "Cleric": true,
+                      "Triton": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Darameric": {
                     "Quest": "Risen from the Mire",
@@ -784,7 +916,15 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 9,
-                    "Attack": "Magic"
+                    "Types": {
+                      "Cleric": true,
+                      "Wizard": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Linsha": {
                     "Quest": "Risen from the Mire",
@@ -795,7 +935,14 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 7,
-                    "Attack": "Physical"
+                    "Types": {
+                      "Fighter": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Markennan": {
                     "Quest": "Risen from the Mire",
@@ -806,8 +953,15 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 7,
-                    "Attack": "Physical",
-                    "Summary": "[Blunt Weapon] specialist."
+                    "Summary": "[Blunt Weapon] specialist.",
+                    "Types": {
+                      "Fighter": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Nimblefingers": {
                     "Quest": "Risen from the Mire",
@@ -818,8 +972,15 @@ function getCards(){
                       "Rogue"
                     ],
                     "Cost": 8,
-                    "Attack": "Physical",
-                    "Light": true
+                    "Types": {
+                      "Rogue": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Light": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Regalen": {
                     "Quest": "Risen from the Mire",
@@ -830,7 +991,14 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 8,
-                    "Attack": "Magic"
+                    "Types": {
+                      "Wizard": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Darkrend": {
                     "Quest": "At the Foundations of the World",
@@ -841,8 +1009,15 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 8,
-                    "Attack": "Magic",
-                    "Summary": "Using forbidden blood magic, Darkrend inflicts [Wound] to power her attacks."
+                    "Summary": "Using forbidden blood magic, Darkrend inflicts [Wound] to power her attacks.",
+                    "Types": {
+                      "Wizard": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Grimwolf": {
                     "Quest": "At the Foundations of the World",
@@ -854,8 +1029,16 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 6,
-                    "Attack": "Physical",
-                    "Summary": "Risen to complete his mission, Grimwolf bleeds ([Wound]) to power himself."
+                    "Summary": "Risen to complete his mission, Grimwolf bleeds ([Wound]) to power himself.",
+                    "Types": {
+                      "Fighter": true,
+                      "Undead": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Honormain": {
                     "Quest": "At the Foundations of the World",
@@ -866,7 +1049,14 @@ function getCards(){
                       "Cleric"
                     ],
                     "Cost": 7,
-                    "Attack": "Physical"
+                    "Types": {
+                      "Cleric": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Jadress": {
                     "Quest": "At the Foundations of the World",
@@ -877,9 +1067,16 @@ function getCards(){
                       "Rogue"
                     ],
                     "Cost": 6,
-                    "Attack": "Physical",
-                    "Gold": true,
-                    "Summary": "[Bow Weapon] specialist."
+                    "Summary": "[Bow Weapon] specialist.",
+                    "Types": {
+                      "Rogue": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Gold": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Moonblades": {
                     "Quest": "At the Foundations of the World",
@@ -890,9 +1087,17 @@ function getCards(){
                       "Fighter",
                       "Rogue"
                     ],
-                    "Attack": "Physical",
                     "Cost": 7,
-                    "Gold": true
+                    "Types": {
+                      "Fighter": true,
+                      "Rogue": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Gold": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Stormskull": {
                     "Quest": "At the Foundations of the World",
@@ -904,8 +1109,16 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 8,
-                    "Attack": "Magic",
-                    "Light": true
+                    "Types": {
+                      "Wizard": true,
+                      "Human": true,
+                      "Orc": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true,
+                      "Light": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Aird": {
                     "Quest": "Ripples in Time",
@@ -916,9 +1129,16 @@ function getCards(){
                       "Rogue"
                     ],
                     "Cost": 6,
-                    "Attack": "Physical",
-                    "Gold": true,
-                    "Summary": "Aird uses your opponents' strengths against them."
+                    "Summary": "Aird uses your opponents' strengths against them.",
+                    "Types": {
+                      "Rogue": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true,
+                      "Gold": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Arcanian": {
                     "Quest": "Ripples in Time",
@@ -929,8 +1149,15 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 8,
-                    "Attack": "Magic",
-                    "Summary": "Arcanian's sorcery changes dice rolls. She also provides [Light] at [II]."
+                    "Summary": "Arcanian's sorcery changes dice rolls. She also provides [Light] at [II].",
+                    "Types": {
+                      "Wizard": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Dunardic": {
                     "Quest": "Ripples in Time",
@@ -941,8 +1168,15 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 6,
-                    "Attack": "Physical",
-                    "Summary": "Once a Town Guard, Dunardic uses your [XP] as a resource."
+                    "Summary": "Once a Town Guard, Dunardic uses your [XP] as a resource.",
+                    "Types": {
+                      "Fighter": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Regian": {
                     "Quest": "Ripples in Time",
@@ -953,7 +1187,14 @@ function getCards(){
                       "Cleric"
                     ],
                     "Cost": 7,
-                    "Attack": "Magic"
+                    "Types": {
+                      "Cleric": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Terakian": {
                     "Quest": "Ripples in Time",
@@ -965,8 +1206,16 @@ function getCards(){
                       "Fighter"
                     ],
                     "Cost": 8,
-                    "Attack": "Physical",
-                    "Summary": "[Potion] specialist."
+                    "Summary": "[Potion] specialist.",
+                    "Types": {
+                      "Cleric": true,
+                      "Fighter": true,
+                      "Human": true
+                    },
+                    "Keywords": {
+                      "Physical Attack": true
+                    },
+                    "Category": "Heroes"
                   },
                   "Veris": {
                     "Quest": "Ripples in Time",
@@ -977,236 +1226,286 @@ function getCards(){
                       "Wizard"
                     ],
                     "Cost": 7,
-                    "Attack": "Magic",
-                    "Light": true,
-                    "Summary": "Veris has the ability to make [Weapons] glow bright."
+                    "Summary": "Veris has the ability to make [Weapons] glow bright.",
+                    "Types": {
+                      "Wizard": true,
+                      "Elf": true
+                    },
+                    "Keywords": {
+                      "Magic Attack": true,
+                      "Light": true
+                    },
+                    "Category": "Heroes"
                   }
                 },
                 "Items": {
                   "Necklace of Dawn": {
-                    "Quest": "Promos"
+                    "Quest": "Promos",
+                    "Category": "Items"
                   },
                   "Scionic Annals": {
-                    "Quest": "Bandits of Black Rock"
+                    "Quest": "Bandits of Black Rock",
+                    "Category": "Items"
                   },
                   "Amulet of Infravision": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Items"
                   },
                   "Gem of Healing": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Items"
                   },
                   "Tome of Knowledge": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Items"
                   },
                   "Elven Ring": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Items"
                   },
                   "Headband of Intellect": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Items"
                   },
                   "Strength Gauntlets": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Items"
                   },
                   "Wand of Light": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Items"
                   },
                   "Crystal of Scrying": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Items"
                   },
                   "Holy Symbol": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Items"
                   },
                   "Potion of Stamina": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Items"
                   },
                   "Ring of Learning": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Items"
                   },
                   "Damilu Huskie": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Items"
                   },
                   "Daramere's Cloak": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Items"
                   },
                   "Potion of Light": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Items"
                   },
                   "Ring of Proficiency": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Items"
                   },
                   "Amulet of Power": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Items"
                   },
                   "Lightstone Gem": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Items"
                   },
                   "Nature's Amulet": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Items"
                   },
                   "Ring of Spell Storing": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Items"
                   }
                 },
                 "Spells": {
                   "Form of the Juggernaut": {
-                    "Quest": "Promos"
+                    "Quest": "Promos",
+                    "Category": "Spells"
                   },
                   "Dark Fire Torch": {
-                    "Quest": "Bandits of Black Rock"
+                    "Quest": "Bandits of Black Rock",
+                    "Category": "Spells"
                   },
                   "Fireball": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Spells"
                   },
                   "Future Vision": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Spells"
                   },
                   "Magic Missile": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Spells"
                   },
                   "Moonlight": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Spells"
                   },
                   "Arcane Touch": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Spells"
                   },
                   "Consecration": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Spells"
                   },
                   "Lightning Bolt": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Spells"
                   },
                   "Nature's Fury": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Spells"
                   },
                   "Arcane Aura": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Spells"
                   },
                   "Charm Monster": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Spells"
                   },
                   "Enchant Weapons": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Spells"
                   },
                   "Vampiric Touch": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Spells"
                   },
                   "Death Pact": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Spells"
                   },
                   "Mirror Image": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Spells"
                   },
                   "Tempest": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Spells"
                   },
                   "True Seeing": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Spells"
                   },
                   "Creeping Death": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Spells"
                   },
                   "Frostbolt": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Spells"
                   },
                   "Mind Control": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Spells"
                   },
                   "Summon Storm": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Spells"
                   }
                 },
                 "Weapons": {
                   "Hand Axe": {
-                    "Quest": "Promos"
+                    "Quest": "Promos",
+                    "Category": "Weapons"
                   },
                   "Rapier": {
-                    "Quest": "Bandits of Black Rock"
+                    "Quest": "Bandits of Black Rock",
+                    "Category": "Weapons"
                   },
                   "Hammer": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Weapons"
                   },
                   "Maul": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Weapons"
                   },
                   "Shortbow": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Weapons"
                   },
                   "Shortspear": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Weapons"
                   },
                   "Shortsword": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Weapons"
                   },
                   "Longbow": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Weapons"
                   },
                   "Longsword": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Weapons"
                   },
                   "Punching Dagger": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Weapons"
                   },
                   "Quarterstaff": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Weapons"
                   },
                   "Battle Axe": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Weapons"
                   },
                   "Boomerang": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Weapons"
                   },
                   "Crystal Dagger": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Weapons"
                   },
                   "Holy Mace": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Weapons"
                   },
                   "Broadsword": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Weapons"
                   },
                   "Crossbow": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Weapons"
                   },
                   "Flail": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Weapons"
                   },
                   "Two-Handed Sword": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Weapons"
                   },
                   "Cursed Mace": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Weapons"
                   },
                   "King's Sword": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Weapons"
                   },
                   "Longspear": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Weapons"
                   },
                   "Magi Staff": {
-                    "Quest": "Ripples in Time"
-                  }
-                },
-                "Treasures": {
-                  "Miricelle": {
-                    "Quest": "Bandits of Black Rock"
-                  },
-                  "Stormland Mirror": {
-                    "Quest": "A Mirror in the Dark"
-                  },
-                  "Sun of the Forest": {
-                    "Quest": "Total Eclipse of the Sun"
-                  },
-                  "Elemental Elixir": {
-                    "Quest": "Risen from the Mire"
-                  },
-                  "Elmoran": {
-                    "Quest": "At the Foundations of the World"
-                  },
-                  "Axe of the Giants": {
-                    "Quest": "Ripples in Time"
-                  },
-                  "Lightbringer": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Weapons"
                   }
                 },
                 "Monsters": {
@@ -1216,7 +1515,8 @@ function getCards(){
                     "Types": [
                       "Humanoid"
                     ],
-                    "Summary": "They attack your Marketplace cards."
+                    "Summary": "They attack your Marketplace cards.",
+                    "Category": "Monsters"
                   },
                   "Kobold Skirmishers": {
                     "Quest": "A Mirror in the Dark",
@@ -1224,14 +1524,16 @@ function getCards(){
                     "Types": [
                       "Humanoid"
                     ],
-                    "Alert": true
+                    "Alert": true,
+                    "Category": "Monsters"
                   },
                   "Goblin Grunts": {
                     "Quest": "A Mirror in the Dark",
                     "Level": 1,
                     "Types": [
                       "Humanoid"
-                    ]
+                    ],
+                    "Category": "Monsters"
                   },
                   "Hobgoblin Brutes": {
                     "Quest": "A Mirror in the Dark",
@@ -1239,7 +1541,8 @@ function getCards(){
                     "Types": [
                       "Humanoid"
                     ],
-                    "Summary": "They attack Heroes and their equipment."
+                    "Summary": "They attack Heroes and their equipment.",
+                    "Category": "Monsters"
                   },
                   "Spider Terrors": {
                     "Quest": "A Mirror in the Dark",
@@ -1248,28 +1551,32 @@ function getCards(){
                       "Giant",
                       "Vermin"
                     ],
-                    "Summary": "They wound heavily ([Wound] and [Festering]) and are drawn to equipment."
+                    "Summary": "They wound heavily ([Wound] and [Festering]) and are drawn to equipment.",
+                    "Category": "Monsters"
                   },
                   "Ancient Adventurers": {
                     "Quest": "A Mirror in the Dark",
                     "Level": 3,
                     "Types": [
                       "Undead"
-                    ]
+                    ],
+                    "Category": "Monsters"
                   },
                   "Goblin King's Guard": {
                     "Quest": "A Mirror in the Dark",
                     "Level": 3,
                     "Types": [
                       "Humanoid"
-                    ]
+                    ],
+                    "Category": "Monsters"
                   },
                   "Twisted Creatures": {
                     "Quest": "Total Eclipse of the Sun",
                     "Level": 1,
                     "Types": [
                       "Beast"
-                    ]
+                    ],
+                    "Category": "Monsters"
                   },
                   "Woodland Sprites": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1277,7 +1584,8 @@ function getCards(){
                     "Types": [
                       "Fey"
                     ],
-                    "Summary": "They deal Festering Wounds ([Festering])."
+                    "Summary": "They deal Festering Wounds ([Festering]).",
+                    "Category": "Monsters"
                   },
                   "Corrupted Elves": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1285,7 +1593,8 @@ function getCards(){
                     "Types": [
                       "Humanoid"
                     ],
-                    "Summary": "Destroy your [XP] or suffer their wrath."
+                    "Summary": "Destroy your [XP] or suffer their wrath.",
+                    "Category": "Monsters"
                   },
                   "Foundational Keepers": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1295,7 +1604,8 @@ function getCards(){
                       "Giant",
                       "Humanoid"
                     ],
-                    "Summary": "These Ogres attack as soon as they refill the Dungeon (but not at game setup)."
+                    "Summary": "These Ogres attack as soon as they refill the Dungeon (but not at game setup).",
+                    "Category": "Monsters"
                   },
                   "Corrupted Centaurs": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1304,7 +1614,8 @@ function getCards(){
                       "Beast",
                       "Humanoid"
                     ],
-                    "Summary": "They are each susceptible to a particular Class, but resilient against others."
+                    "Summary": "They are each susceptible to a particular Class, but resilient against others.",
+                    "Category": "Monsters"
                   },
                   "Treefolk": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1313,7 +1624,8 @@ function getCards(){
                       "Giant",
                       "Plant"
                     ],
-                    "Summary": "They are worth much more if you defeat them convincingly."
+                    "Summary": "They are worth much more if you defeat them convincingly.",
+                    "Category": "Monsters"
                   },
                   "Ensnaring Vines": {
                     "Quest": "Risen from the Mire",
@@ -1321,7 +1633,8 @@ function getCards(){
                     "Types": [
                       "Plant"
                     ],
-                    "Alert": true
+                    "Alert": true,
+                    "Category": "Monsters"
                   },
                   "Bog Zombies": {
                     "Quest": "Risen from the Mire",
@@ -1329,7 +1642,8 @@ function getCards(){
                     "Types": [
                       "Undead"
                     ],
-                    "Summary": "They deal Festering Wounds ([Festering])."
+                    "Summary": "They deal Festering Wounds ([Festering]).",
+                    "Category": "Monsters"
                   },
                   "Chaos Lizards": {
                     "Quest": "Risen from the Mire",
@@ -1337,7 +1651,8 @@ function getCards(){
                     "Types": [
                       "Humanoid"
                     ],
-                    "Summary": "They discard your cards based on the outcome of dice rolls."
+                    "Summary": "They discard your cards based on the outcome of dice rolls.",
+                    "Category": "Monsters"
                   },
                   "Moor Skeletons": {
                     "Quest": "Risen from the Mire",
@@ -1345,7 +1660,8 @@ function getCards(){
                     "Types": [
                       "Undead"
                     ],
-                    "Summary": "They deal [Festering] and are resistant to [Physical Attack] and [Edged Weapons]."
+                    "Summary": "They deal [Festering] and are resistant to [Physical Attack] and [Edged Weapons].",
+                    "Category": "Monsters"
                   },
                   "Marsh Trolls": {
                     "Quest": "Risen from the Mire",
@@ -1353,7 +1669,8 @@ function getCards(){
                     "Types": [
                       "Giant"
                     ],
-                    "Summary": "They have immunities to different cards."
+                    "Summary": "They have immunities to different cards.",
+                    "Category": "Monsters"
                   },
                   "Swamp Spirits": {
                     "Quest": "Risen from the Mire",
@@ -1361,7 +1678,8 @@ function getCards(){
                     "Types": [
                       "Undead"
                     ],
-                    "Summary": "They hunger for (attack) your [Heroes]."
+                    "Summary": "They hunger for (attack) your [Heroes].",
+                    "Category": "Monsters"
                   },
                   "Air Servitors": {
                     "Quest": "At the Foundations of the World",
@@ -1369,7 +1687,8 @@ function getCards(){
                     "Types": [
                       "Elemental"
                     ],
-                    "Summary": "They tend to be vulnerable to [Magic Attack]"
+                    "Summary": "They tend to be vulnerable to [Magic Attack]",
+                    "Category": "Monsters"
                   },
                   "Water Servitors": {
                     "Quest": "At the Foundations of the World",
@@ -1378,7 +1697,8 @@ function getCards(){
                       "Elemental"
                     ],
                     "Summary": "They move throughout the dungeon making it unpredictable.",
-                    "Alert": true
+                    "Alert": true,
+                    "Category": "Monsters"
                   },
                   "Earth Servitors": {
                     "Quest": "At the Foundations of the World",
@@ -1386,7 +1706,8 @@ function getCards(){
                     "Types": [
                       "Elemental"
                     ],
-                    "Summary": "They are strong against [Physical Attack]."
+                    "Summary": "They are strong against [Physical Attack].",
+                    "Category": "Monsters"
                   },
                   "Fire Servitors": {
                     "Quest": "At the Foundations of the World",
@@ -1394,7 +1715,8 @@ function getCards(){
                     "Types": [
                       "Elemental"
                     ],
-                    "Summary": "They attack your [Skill] and Weapons."
+                    "Summary": "They attack your [Skill] and Weapons.",
+                    "Category": "Monsters"
                   },
                   "Divine Founders": {
                     "Quest": "At the Foundations of the World",
@@ -1403,7 +1725,8 @@ function getCards(){
                       "Elemental",
                       "Celestial"
                     ],
-                    "Summary": "They judge (attack) your Heroes harshly."
+                    "Summary": "They judge (attack) your Heroes harshly.",
+                    "Category": "Monsters"
                   },
                   "Abyssal Founders": {
                     "Quest": "At the Foundations of the World",
@@ -1412,7 +1735,8 @@ function getCards(){
                       "Elemental",
                       "Demon"
                     ],
-                    "Summary": "The chaotic nature of their dice rolls make them unpredicatble. [sic]"
+                    "Summary": "The chaotic nature of their dice rolls make them unpredicatble. [sic]",
+                    "Category": "Monsters"
                   },
                   "Doomknights": {
                     "Quest": "Ripples in Time",
@@ -1420,7 +1744,8 @@ function getCards(){
                     "Types": [
                       "Undead"
                     ],
-                    "Summary": "They attack Heroes who try to move through their room."
+                    "Summary": "They attack Heroes who try to move through their room.",
+                    "Category": "Monsters"
                   },
                   "Gnoll Raiders": {
                     "Quest": "Ripples in Time",
@@ -1428,7 +1753,8 @@ function getCards(){
                     "Types": [
                       "Humanoid"
                     ],
-                    "Summary": "They destroy your Weapons and Gear."
+                    "Summary": "They destroy your Weapons and Gear.",
+                    "Category": "Monsters"
                   },
                   "Minions of Chaos": {
                     "Quest": "Ripples in Time",
@@ -1436,7 +1762,8 @@ function getCards(){
                     "Types": [
                       "Demon"
                     ],
-                    "Summary": "They destroy your Heroes based on the outcome of dice rolls."
+                    "Summary": "They destroy your Heroes based on the outcome of dice rolls.",
+                    "Category": "Monsters"
                   },
                   "Torments": {
                     "Quest": "Ripples in Time",
@@ -1444,7 +1771,8 @@ function getCards(){
                     "Types": [
                       "Elemental"
                     ],
-                    "Summary": "They are strong against [Magic Attack]."
+                    "Summary": "They are strong against [Magic Attack].",
+                    "Category": "Monsters"
                   },
                   "Ancient Wyrms": {
                     "Quest": "Ripples in Time",
@@ -1452,7 +1780,8 @@ function getCards(){
                     "Types": [
                       "Dragon"
                     ],
-                    "Summary": "They like to snack on (attack) your Heroes."
+                    "Summary": "They like to snack on (attack) your Heroes.",
+                    "Category": "Monsters"
                   },
                   "Ancient Protectors": {
                     "Quest": "Ripples in Time",
@@ -1460,31 +1789,38 @@ function getCards(){
                     "Types": [
                       "Golem"
                     ],
-                    "Summary": "They are immune to Heroes with low [Skill]."
+                    "Summary": "They are immune to Heroes with low [Skill].",
+                    "Category": "Monsters"
                   }
                 },
                 "Guardians": {
                   "Smorga the Queen": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Category": "Guardians"
                   },
                   "Guardian of the Sun": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Category": "Guardians"
                   },
                   "Baalok, the Flesh Weaver": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Category": "Guardians"
                   },
                   "Miricelle, Scion Defender": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Category": "Guardians"
                   },
                   "Death Sentinel": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Category": "Guardians"
                   }
                 },
                 "Dungeon Rooms": {
                   "Abandoned Gate": {
                     "Quest": "A Mirror in the Dark",
                     "Level": 1,
-                    "Light": 0
+                    "Light": 0,
+                    "Category": "Dungeon Rooms"
                   },
                   "Mine": {
                     "Quest": "A Mirror in the Dark",
@@ -1495,7 +1831,8 @@ function getCards(){
                     },
                     "Reward": {
                       "Iron Rations": 1
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Crypt": {
                     "Quest": "A Mirror in the Dark",
@@ -1517,7 +1854,8 @@ function getCards(){
                     },
                     "Reward": {
                       "XP": 1
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Sunken Well": {
                     "Quest": "A Mirror in the Dark",
@@ -1528,7 +1866,8 @@ function getCards(){
                     },
                     "Reward": {
                       "Lantern": 1
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Throne Room": {
                     "Quest": "A Mirror in the Dark",
@@ -1551,7 +1890,8 @@ function getCards(){
                     },
                     "Reward": {
                       "XP": 2
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Vault": {
                     "Quest": "A Mirror in the Dark",
@@ -1566,7 +1906,8 @@ function getCards(){
                     "After Battle": {
                       "Return": 2,
                       "Text": "Place your Champion in a [II] room."
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Fairy Meadow": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1577,7 +1918,8 @@ function getCards(){
                     },
                     "Reward": {
                       "Lantern": 1
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Ominous Looking Road": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1594,7 +1936,8 @@ function getCards(){
                           "Bonus": 1
                         }
                       }
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Hollow Tree": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1606,7 +1949,8 @@ function getCards(){
                     "After Battle": {
                       "Return": 0,
                       "Text": "Place your Champion in the [0] room."
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Tree House": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1620,7 +1964,8 @@ function getCards(){
                         "Type": "Starter",
                         "Amount": 1
                       }
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Elven Outpost": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1637,7 +1982,8 @@ function getCards(){
                       },
                       "Return": 0,
                       "Text": "Level up a Hero for 2 less [XP]. Place your Champion in the [0] room."
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Elven Ruins": {
                     "Quest": "Total Eclipse of the Sun",
@@ -1661,7 +2007,8 @@ function getCards(){
                         },
                         "Text": "Unless you have a Rogue, discard 1 card from your deck. +[Health] = the card's [Cost]"
                       }
-                    ]
+                    ],
+                    "Category": "Dungeon Rooms"
                   },
                   "Alchemy Chamber": {
                     "Quest": "Risen from the Mire",
@@ -1679,7 +2026,8 @@ function getCards(){
                           "Health": 1
                         }
                       }
-                    ]
+                    ],
+                    "Category": "Dungeon Rooms"
                   },
                   "The Servant's Tombs": {
                     "Quest": "Risen from the Mire",
@@ -1697,7 +2045,8 @@ function getCards(){
                           "Health": 2
                         }
                       }
-                    ]
+                    ],
+                    "Category": "Dungeon Rooms"
                   },
                   "Bog": {
                     "Quest": "Risen from the Mire",
@@ -1713,7 +2062,8 @@ function getCards(){
                         "Spell": 1,
                         "Weapon": 1
                       }
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Sunken Graveyard": {
                     "Quest": "Risen from the Mire",
@@ -1735,7 +2085,8 @@ function getCards(){
                     ],
                     "Reward": {
                       "Iron Rations": 1
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Blood Altar Room": {
                     "Quest": "Risen from the Mire",
@@ -1759,7 +2110,8 @@ function getCards(){
                     },
                     "After Battle": {
                       "Return": 0
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "The Lich's Tomb": {
                     "Quest": "Risen from the Mire",
@@ -1778,7 +2130,8 @@ function getCards(){
                     },
                     "After Battle": {
                       "Return": 0
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Air Temple": {
                     "Quest": "At the Foundations of the World",
@@ -1791,7 +2144,8 @@ function getCards(){
                       "Buy": {
                         "Item": 1
                       }
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Water Temple": {
                     "Quest": "At the Foundations of the World",
@@ -1804,7 +2158,8 @@ function getCards(){
                     ],
                     "Reward": {
                       "Iron Rations": 1
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Earth Temple": {
                     "Quest": "At the Foundations of the World",
@@ -1819,7 +2174,8 @@ function getCards(){
                           "HP": 1
                         }
                       }
-                    ]
+                    ],
+                    "Category": "Dungeon Rooms"
                   },
                   "Fire Temple": {
                     "Quest": "At the Foundations of the World",
@@ -1833,7 +2189,8 @@ function getCards(){
                     },
                     "Reward": {
                       "Lantern": 2
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Abyssal Temple": {
                     "Quest": "At the Foundations of the World",
@@ -1855,7 +2212,8 @@ function getCards(){
                         "XP": "Special",
                         "Text": "Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
                       }
-                    ]
+                    ],
+                    "Category": "Dungeon Rooms"
                   },
                   "Celestial Temple": {
                     "Quest": "At the Foundations of the World",
@@ -1871,7 +2229,8 @@ function getCards(){
                     "After Battle": {
                       "Return": 0,
                       "Text": "Place your Champion in the [0] room."
-                    }
+                    },
+                    "Category": "Dungeon Rooms"
                   },
                   "Gate Cavern": {
                     "Quest": "Ripples in Time",
@@ -1891,7 +2250,8 @@ function getCards(){
                         "Repeatable": true,
                         "Text": "For each [Light] you have, reduce the [Health] boost of this room by 2."
                       }
-                    ]
+                    ],
+                    "Category": "Dungeon Rooms"
                   },
                   "Dangerous Passageway": {
                     "Quest": "Ripples in Time",
@@ -1911,7 +2271,8 @@ function getCards(){
                         "Repeatable": true,
                         "Text": "For each [Light] you have, reduce the [Health] boost of this room by 2."
                       }
-                    ]
+                    ],
+                    "Category": "Dungeon Rooms"
                   },
                   "Fire Chasm": {
                     "Quest": "Ripples in Time",
@@ -1931,7 +2292,8 @@ function getCards(){
                         "Repeatable": true,
                         "Text": "For each [Light] you have, reduce the [Health] boost of this room by 2."
                       }
-                    ]
+                    ],
+                    "Category": "Dungeon Rooms"
                   }
                 }
               };
