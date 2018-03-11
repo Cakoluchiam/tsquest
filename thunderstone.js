@@ -7,7 +7,7 @@ $(function() {
     } else {
       $(id).html(msg);
     }
-  }
+  };
   var cs;
   var sets;
   var cards;
@@ -21,6 +21,12 @@ $(function() {
   var room_options;
   var monster_options_leveled = {};
   var room_options_leveled = {};
+  var hero_options_classes = {
+    "Rogue": {},
+    "Fighter": {},
+    "Wizard": {},
+    "Cleric": {}
+  };
 
   $.getJSON("enums.json",function(data){
     cs = data;
@@ -48,24 +54,37 @@ $(function() {
     guardian_options = cards.Guardians;
     room_options = cards["Dungeon Rooms"];
 
+    Object.keys(hero_options).forEach(function(hero) {
+      //
+      hero_options[hero].Classes.forEach(function(hero_class) {
+        hero_options_classes[hero_class][hero] = hero_options[hero];
+      });
+    });
+
+    log(null,"Hero Classes:",hero_options_classes);
+
     var keys;
     var level;
+    var testMonsterLevel = function(e){
+      return (monster_options[e].Level === level);
+    };
+    var testRoomLevel = function(e){
+      return (room_options[e].Level === level);
+    };
+    var addLeveledMonster = function(key){
+      monster_options_leveled[level][key] = monster_options[key];
+    };
+    var addLeveledRoom = function(key){
+      room_options_leveled[level][key] = room_options[key];
+    };
     for(level = 1; level <= 3; level += 1) {
-      keys = Object.keys(monster_options).filter(function(e){
-        return (monster_options[e].Level === level);
-      });
+      keys = Object.keys(monster_options).filter(testMonsterLevel);
       monster_options_leveled[level] = {};
-      keys.forEach(function(key){
-        monster_options_leveled[level][key] = monster_options[key];
-      });
+      keys.forEach(addLeveledMonster);
 
-      keys = Object.keys(room_options).filter(function(e){
-        return (room_options[e].Level === level);
-      });
+      keys = Object.keys(room_options).filter(testRoomLevel);
       room_options_leveled[level] = {};
-      keys.forEach(function(key){
-        room_options_leveled[level][key] = room_options[key];
-      });
+      keys.forEach(addLeveledRoom);
     }
     log(null,"Cards loaded:",cards);
   }).fail(function() {
@@ -78,26 +97,38 @@ $(function() {
     guardian_options = cards.Guardians;
     room_options = cards["Dungeon Rooms"];
 
+    Object.keys(hero_options).forEach(function(hero) {
+      //
+      hero_options[hero].Classes.forEach(function(hero_class) {
+        hero_options_classes[hero_class][hero] = hero_options[hero];
+      });
+    });
+
+    log(null,"Hero Classes:",hero_options_classes);
+
     var keys;
     var level;
+    var testMonsterLevel = function(e){
+      return (monster_options[e].Level === level);
+    };
+    var testRoomLevel = function(e){
+      return (room_options[e].Level === level);
+    };
+    var addLeveledMonster = function(key){
+      monster_options_leveled[level][key] = monster_options[key];
+    };
+    var addLeveledRoom = function(key){
+      room_options_leveled[level][key] = room_options[key];
+    };
     for(level = 1; level <= 3; level += 1) {
-      keys = Object.keys(monster_options).filter(function(e){
-        return (monster_options[e].Level === level);
-      });
+      keys = Object.keys(monster_options).filter(testMonsterLevel);
       monster_options_leveled[level] = {};
-      keys.forEach(function(key){
-        monster_options_leveled[level][key] = monster_options[key];
-      });
+      keys.forEach(addLeveledMonster);
 
-      keys = Object.keys(room_options).filter(function(e){
-        return (room_options[e].Level === level);
-      });
+      keys = Object.keys(room_options).filter(testRoomLevel);
       room_options_leveled[level] = {};
-      keys.forEach(function(key){
-        room_options_leveled[level][key] = room_options[key];
-      });
+      keys.forEach(addLeveledRoom);
     }
-
     log(null,"Could not load cards from file.",cards,arguments);
     log(null,"Leveled Monsters:",monster_options_leveled,"Leveled Rooms:",room_options_leveled);
   });
@@ -109,12 +140,50 @@ $(function() {
   });
 
   $("#choose_heroes_classed").click(function(event){
-    log("#hero_choices",'<ul><li>Coming soon…</li></ul>')
-    // log("#hero_choices",'<ul><li>'+choose(4,hero_options).join('</li><li>')+'</li></ul>');
+    var choices = {
+      Cleric: choose(1,hero_options_classes.Cleric)[0],
+      Fighter: choose(1,hero_options_classes.Fighter)[0],
+      Rogue: choose(1,hero_options_classes.Rogue)[0],
+      Wizard: choose(1,hero_options_classes.Wizard)[0]
+    };
+
+    var classes;
+
+    while(choices.Cleric === choices.Fighter ||
+          choices.Cleric === choices.Rogue ||
+          choices.Cleric === choices.Wizard ||
+          choices.Fighter === choices.Rogue ||
+          choices.Fighter === choices.Wizard ||
+          choices.Rogue === choices.Wizard) {
+      classes = Object.keys(choices);
+
+      class1 = classes.splice(Math.floor(Math.random()*4),1);
+      class2 = classes.splice(Math.floor(Math.random()*3),1);
+
+      if(choices[class1] === choices[class2]) {
+        log(null,"Chose "+choices[class1]+" for both "+class1+" and "+class2+".");
+        if(Object.keys(hero_options_classes[class1]).length < 2) {
+          if(Object.keys(hero_options_classes[class2]).length < 2) {
+            throw new Error("Cannot choose different heroes for "+class1+" and "+class2+"; "+choices[class1]+" is the only hero of both classes.");
+          } else {
+            choices[class2] = choose(1,hero_options_classes[class2])[0];
+          }
+        } else {
+          choices[class1] = choose(1,hero_options_classes[class1])[0];
+        }
+      }
+    }
+
+    log("#hero_choices",'<ul><li>'+
+      [choices.Cleric, choices.Fighter, choices.Rogue, choices.Wizard].map(function(hero) {
+      return hero + ' (' + hero_options[hero].Classes.join(', ') + ')';
+    }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_heroes_random").click(function(event){
-    log("#hero_choices",'<ul><li>'+choose(4,hero_options).join('</li><li>')+'</li></ul>');
+    log("#hero_choices",'<ul><li>'+choose(4,hero_options).map(function(hero) {
+      return hero + ' (' + hero_options[hero].Classes.join(', ') + ')';
+    }).join('</li><li>')+'</li></ul>');
   });
 
   $("#choose_marketplace").click(function(event){
@@ -520,106 +589,419 @@ function getCards(){
               return {
                 "Heroes": {
                   "Outlands": {
-                    "Quest": "Promos"
+                    "Quest": "Promos",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Physical"
                   },
                   "Stalker": {
-                    "Quest": "Promos"
+                    "Quest": "Promos",
+                    "Races": [
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Rogue"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Physical",
+                    "Gold": true,
+                    "Summary": "Stalker uses Gear tokens for strength and provides [Light] at [III]."
                   },
                   "The Yellow Knight": {
-                    "Quest": "Promos"
+                    "Quest": "Promos",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Physical"
                   },
                   "Edlin": {
-                    "Quest": "Bandits of Black Rock"
+                    "Quest": "Bandits of Black Rock",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Physical"
                   },
                   "Gorlandor": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Physical"
                   },
                   "Hawkswood": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Races": [
+                      "Avian",
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Rogue"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Physical",
+                    "Gold": true,
+                    "Light": true
                   },
                   "Pylorian": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Wizard"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Magic",
+                    "Summary": "[Arcane Spell] specialist."
                   },
                   "Scathian": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Races": [
+                      "Halfling"
+                    ],
+                    "Classes": [
+                      "Rogue",
+                      "Wizard"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Magic",
+                    "Gold": true
                   },
                   "Silverhelm": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Races": [
+                      "Dwarf"
+                    ],
+                    "Classes": [
+                      "Cleric",
+                      "Fighter"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Physical"
                   },
                   "Stormhand": {
-                    "Quest": "A Mirror in the Dark"
+                    "Quest": "A Mirror in the Dark",
+                    "Races": [
+                      "Dwarf"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Physical",
+                    "Summary": "[Edged Weapon] specialist."
                   },
                   "Avania": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Races": [
+                      "Celestial",
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Cleric"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Magic"
                   },
                   "Brimstone": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Races": [
+                      "Dwarf"
+                    ],
+                    "Classes": [
+                      "Rogue"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Physical",
+                    "Gold": true,
+                    "Light": true,
+                    "Summary": "The more [Light] you have, the more powerful Brimstone gets."
                   },
                   "Ehrlingal": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Races": [
+                      "Halfling"
+                    ],
+                    "Classes": [
+                      "Rogue"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Physical",
+                    "Gold": true,
+                    "Summary": "Ehrlingal provides [Light] at [II] and is a [Dagger] specialist."
                   },
                   "Felin": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Races": [
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Cleric",
+                      "Wizard"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Physical",
+                    "Light": true,
+                    "Summary": "Felin can shapeshift her form, depending on the situation."
                   },
                   "Gendarme": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Races": [
+                      "Dwarf"
+                    ],
+                    "Classes": [
+                      "Wizard"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Magic",
+                    "Summary": "Gendarme uses secret Dwarven magic to empower your [Weapons]."
                   },
                   "Sephilest": {
-                    "Quest": "Total Eclipse of the Sun"
+                    "Quest": "Total Eclipse of the Sun",
+                    "Races": [
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Physical"
                   },
-                  "Bahran": {
-                    "Quest": "Risen from the Mire"
+                  "Baharan": {
+                    "Quest": "Risen from the Mire",
+                    "Races": [
+                      "Triton"
+                    ],
+                    "Classes": [
+                      "Cleric"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Magic",
+                    "Summary": "Baharan uses strange magics, allowing you to discard cards for bonuses."
                   },
                   "Darameric": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Races": [
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Cleric",
+                      "Wizard"
+                    ],
+                    "Cost": 9,
+                    "Attack": "Magic"
                   },
                   "Linsha": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Physical"
                   },
                   "Markennan": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Physical",
+                    "Summary": "[Blunt Weapon] specialist."
                   },
                   "Nimblefingers": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Races": [
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Rogue"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Physical",
+                    "Light": true
                   },
                   "Regalen": {
-                    "Quest": "Risen from the Mire"
+                    "Quest": "Risen from the Mire",
+                    "Races": [
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Wizard"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Magic"
                   },
                   "Darkrend": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Wizard"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Magic",
+                    "Summary": "Using forbidden blood magic, Darkrend inflicts [Wound] to power her attacks."
                   },
                   "Grimwolf": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Races": [
+                      "Undead",
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Physical",
+                    "Summary": "Risen to complete his mission, Grimwolf bleeds ([Wound]) to power himself."
                   },
                   "Honormain": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Cleric"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Physical"
                   },
                   "Jadress": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Races": [
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Rogue"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Physical",
+                    "Gold": true,
+                    "Summary": "[Bow Weapon] specialist."
                   },
                   "Moonblades": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter",
+                      "Rogue"
+                    ],
+                    "Attack": "Physical",
+                    "Cost": 7,
+                    "Gold": true
                   },
                   "Stormskull": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Races": [
+                      "Human",
+                      "Orc"
+                    ],
+                    "Classes": [
+                      "Wizard"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Magic",
+                    "Light": true
                   },
                   "Aird": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Rogue"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Physical",
+                    "Gold": true,
+                    "Summary": "Aird uses your opponents' strengths against them."
                   },
                   "Arcanian": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Wizard"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Magic",
+                    "Summary": "Arcanian's sorcery changes dice rolls. She also provides [Light] at [II]."
                   },
                   "Dunardic": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Fighter"
+                    ],
+                    "Cost": 6,
+                    "Attack": "Physical",
+                    "Summary": "Once a Town Guard, Dunardic uses your [XP] as a resource."
                   },
                   "Regian": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Cleric"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Magic"
                   },
                   "Terakian": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Races": [
+                      "Human"
+                    ],
+                    "Classes": [
+                      "Cleric",
+                      "Fighter"
+                    ],
+                    "Cost": 8,
+                    "Attack": "Physical",
+                    "Summary": "[Potion] specialist."
                   },
                   "Veris": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Races": [
+                      "Elf"
+                    ],
+                    "Classes": [
+                      "Wizard"
+                    ],
+                    "Cost": 7,
+                    "Attack": "Magic",
+                    "Light": true,
+                    "Summary": "Veris has the ability to make [Weapons] glow bright."
                   }
                 },
                 "Items": {
@@ -870,7 +1252,7 @@ function getCards(){
                     "Quest": "A Mirror in the Dark",
                     "Level": 1,
                     "Types": [
-                      "Humanoid",
+                      "Humanoid"
                     ]
                   },
                   "Hobgoblin Brutes": {
@@ -1286,20 +1668,22 @@ function getCards(){
                     "Battle": {
                       "Health": "Special"
                     },
-                    "Special": {
-                      "Unless": {
-                        "Rogue": 1
-                      },
-                      "Penalty": {
+                    "Special": [
+                      {
+                        "Unless": {
+                          "Rogue": 1
+                        },
                         "Card": {
-                          "Choose": 1
+                          "Choose": -1,
+                          "From": "Hand",
+                          "To": "Discard"
                         },
                         "Battle": {
                           "Health": "Special"
-                        }
-                      },
-                      "Text": "Unless you have a Rogue, discard 1 card from your deck. +[Health] = the card's [Cost]"
-                    }
+                        },
+                        "Text": "Unless you have a Rogue, discard 1 card from your deck. +[Health] = the card's [Cost]"
+                      }
+                    ]
                   },
                   "Alchemy Chamber": {
                     "Quest": "Risen from the Mire",
@@ -1308,16 +1692,16 @@ function getCards(){
                     "Battle": {
                       "Health": "Special"
                     },
-                    "Special": {
-                      "Unless": {
-                        "Magic": 1
-                      },
-                      "Penalty": {
+                    "Special": [
+                      {
+                        "Unless": {
+                          "Magic": 1
+                        },
                         "Battle": {
                           "Health": 1
                         }
                       }
-                    }
+                    ]
                   },
                   "The Servant's Tombs": {
                     "Quest": "Risen from the Mire",
@@ -1326,16 +1710,16 @@ function getCards(){
                     "Battle": {
                       "Armor": "Special"
                     },
-                    "Special": {
-                      "Unless": {
-                        "Light": 1
-                      },
-                      "Penalty": {
+                    "Special": [
+                      {
+                        "Unless": {
+                          "Light": 1
+                        },
                         "Battle": {
                           "Health": 2
                         }
                       }
-                    }
+                    ]
                   },
                   "Bog": {
                     "Quest": "Risen from the Mire",
@@ -1361,16 +1745,16 @@ function getCards(){
                       "Health": 2,
                       "Armor": "Special"
                     },
-                    "Special": {
-                      "Unless": {
-                        "Light": 2
-                      },
-                      "Penalty": {
+                    "Special": [
+                      {
+                        "Unless": {
+                          "Light": 2
+                        },
                         "Battle": {
                           "Armor": 3
                         }
                       }
-                    },
+                    ],
                     "Reward": {
                       "Iron Rations": 1
                     }
@@ -1380,13 +1764,15 @@ function getCards(){
                     "Level": 3,
                     "Light": 2,
                     "Alert": true,
-                    "Special": {
-                      "Cost": {
-                        "Wound": 1
-                      },
-                      "Light": -1,
-                      "Text": "You may take 1 or more [Wound] to reduce this room's [Light] by 1 for each [Wound] taken."
-                    },
+                    "Special": [
+                      {
+                        "Cost": {
+                          "Wound": 1
+                        },
+                        "Light": -1,
+                        "Text": "You may take 1 or more [Wound] to reduce this room's [Light] by 1 for each [Wound] taken."
+                      }
+                    ],
                     "Battle": {
                       "Health": 2
                     },
@@ -1404,9 +1790,11 @@ function getCards(){
                     "Battle": {
                       "Health": "Special"
                     },
-                    "Special": {
-                      "Text": "Roll 2d6. +[Health] = the lower value rolled, or the total value if you rolled doubles."
-                    },
+                    "Special": [
+                      {
+                        "Text": "Roll 2d6. +[Health] = the lower value rolled, or the total value if you rolled doubles."
+                      }
+                    ],
                     "Reward": {
                       "XP": 3
                     },
@@ -1431,9 +1819,11 @@ function getCards(){
                     "Quest": "At the Foundations of the World",
                     "Level": 1,
                     "Light": 1,
-                    "Special": {
-                      "Text": "Refill this room from the other [I] room. Then, refill that room from the Monster deck."
-                    },
+                    "Special": [
+                      {
+                        "Text": "Refill this room from the other [I] room. Then, refill that room from the Monster deck."
+                      }
+                    ],
                     "Reward": {
                       "Iron Rations": 1
                     }
@@ -1442,14 +1832,16 @@ function getCards(){
                     "Quest": "At the Foundations of the World",
                     "Level": 2,
                     "Light": 1,
-                    "Special": {
-                      "Requires": {
-                        "Text": "If your total Attack ([Physical] + [Magic]) exceeds this Monster's [Health] by 3 or more, you have +1 HP."
-                      },
-                      "Reward": {
-                        "HP": 1
+                    "Special": [
+                      {
+                        "Requires": {
+                          "Text": "If your total Attack ([Physical] + [Magic]) exceeds this Monster's [Health] by 3 or more, you have +1 HP."
+                        },
+                        "Reward": {
+                          "HP": 1
+                        }
                       }
-                    }
+                    ]
                   },
                   "Fire Temple": {
                     "Quest": "At the Foundations of the World",
@@ -1477,25 +1869,91 @@ function getCards(){
                       "XP": "Special",
                       "Text": "Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
                     },
-                    "Special": {
-                      "Cost": {
-                        "Return": 0
-                      },
-                      "XP": "Special",
-                      "Text": "Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
-                    }
+                    "Special": [
+                      {
+                        "Cost": {
+                          "Return": 0
+                        },
+                        "XP": "Special",
+                        "Text": "Gain [XP] equal to your total [Light]. At the end of the turn, place your Champion in the 0 room."
+                      }
+                    ]
                   },
                   "Celestial Temple": {
-                    "Quest": "At the Foundations of the World"
+                    "Quest": "At the Foundations of the World",
+                    "Level": 3,
+                    "Light": 2,
+                    "Battle": {
+                      "Health": 1,
+                      "Magic Resistance": 2
+                    },
+                    "Reward": {
+                      "Treasure": 1
+                    },
+                    "After Battle": {
+                      "Return": 0,
+                      "Text": "Place your Champion in the [0] room."
+                    }
                   },
                   "Gate Cavern": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 1,
+                    "Light": 0,
+                    "Battle": {
+                      "Health": 2
+                    },
+                    "Special": [
+                      {
+                        "Requires": {
+                          "Light": 1
+                        },
+                        "Bonus": {
+                          "Health": -2
+                        },
+                        "Repeatable": true,
+                        "Text": "For each [Light] you have, reduce the [Health] boost of this room by 2."
+                      }
+                    ]
                   },
                   "Dangerous Passageway": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 2,
+                    "Light": 0,
+                    "Battle": {
+                      "Health": 4
+                    },
+                    "Special": [
+                      {
+                        "Requires": {
+                          "Light": 1
+                        },
+                        "Bonus": {
+                          "Health": -2
+                        },
+                        "Repeatable": true,
+                        "Text": "For each [Light] you have, reduce the [Health] boost of this room by 2."
+                      }
+                    ]
                   },
                   "Fire Chasm": {
-                    "Quest": "Ripples in Time"
+                    "Quest": "Ripples in Time",
+                    "Level": 3,
+                    "Light": 0,
+                    "Battle": {
+                      "Health": 6
+                    },
+                    "Special": [
+                      {
+                        "Requires": {
+                          "Light": 1
+                        },
+                        "Bonus": {
+                          "Health": -2
+                        },
+                        "Repeatable": true,
+                        "Text": "For each [Light] you have, reduce the [Health] boost of this room by 2."
+                      }
+                    ]
                   }
                 }
               };
