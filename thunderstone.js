@@ -12,6 +12,24 @@ $(function() {
   var sets;
   var groups;
 
+  var exclude = {
+    Quest: {
+      "A Mirror in the Dark": false,
+      "Risen from the Mire": false,
+      "At the Foundations of the World": false,
+      "Total Eclipse of the Sun": false,
+      "Ripple in Time": false,
+      "Promos": false, 
+      "Bandits of Black Rock": false
+    },
+    Types: {
+      //
+    },
+    Keywords: {
+      //
+    }
+  };
+
   var options = {
     Heroes: {
       All: {},
@@ -102,6 +120,7 @@ $(function() {
           choices.Rogue === choices.Wizard) {
       if(Date.now() - runtime > 1000) {
         log(null,"Runtime exceeded for rerolling duplicate heroes. Select different filters if you want different choices.");
+        break;
       }
       classes = Object.keys(choices);
 
@@ -207,7 +226,18 @@ $(function() {
   }
 
   function getCard(thing, type) {
-    return groups[type][thing];
+    if(thing === "\&lt;not enough choices\&gt;") {
+      return {
+        Level:"N/A",
+        Classes:["N/A"]
+      };
+    } else if(type === "Marketplace") {
+      return groups.Items[thing] ||
+             groups.Spells[thing] ||
+             groups.Weapons[thing];
+    } else {
+      return groups[type][thing];
+    }
   }
 
   function toggle(type,on) {
@@ -228,7 +258,13 @@ $(function() {
         options.Marketplace.All[thing] = on;
         options.Marketplace[type][thing] = on;
       };
-    } else if(type === "Guardians") {
+    } else if(type === "Marketplace") {
+      return function(thing) {
+        options.Marketplace.All[thing] = on;
+        var type = getCard(thing, "Marketplace").Category;
+        options.Marketplace[type][thing] = on;
+      };
+    }else if(type === "Guardians") {
       return function(thing) {
         options[type].All[thing] = on;
       };
@@ -239,6 +275,132 @@ $(function() {
       // return
     }
   }
+
+  function checkExclude(card) {
+    return Object.keys(card).reduce(function(acc,group) {
+      if(exclude[group] === undefined) {
+        return acc;
+      }
+
+      var filtered = false;
+
+      if(Array.isArray(card[group])) {
+        card[group].forEach(function(attr) {
+          filtered = filtered || exclude[group][attr];
+        });
+      } else if(typeof(card[group]) === "object") {
+        Object.keys(card[group]).forEach(function(attr){
+          filtered = filtered || (exclude[group][attr] && card[group][attr]);
+        });
+      } else {
+        filtered = exclude[group][card[group]];
+      }
+
+      return acc || Boolean(filtered);
+    },false);
+  }
+
+  $(".quest").mSwitch({
+    onRender:function(elem){
+      // allows to apply a first state to the rendering of the CHECKBOX 
+    },
+    onRendered:function(elem){
+      // exec your logic when the render is complete
+    },
+    onTurnOn:function(elem){
+      // exec your logic when the switch is activated
+      var quest = $(elem).attr("name");
+      exclude.Quest[quest] = false;
+      var affectedCards = {};
+      Object.keys(options).forEach(function(groupName) {
+        var group = options[groupName].All;
+        var toggleFunc = toggle(groupName,true);
+        affectedCards[groupName] = [];
+        Object.keys(group).forEach(function(cardName) {
+          if(group[cardName] === true) {
+            return;
+          }
+          var card = getCard(cardName,groupName);
+          if(card.Quest === quest && !checkExclude(card)) {
+            affectedCards[groupName].push(cardName);
+            toggleFunc(cardName);
+          }
+        });
+      });
+      log(null,"Including cards:",affectedCards);
+      var remaining = {
+        Heroes:Object.keys(options.Heroes.All).filter(function(e){
+          return options.Heroes.All[e];
+        }),
+        Items:Object.keys(options.Marketplace.Items).filter(function(e){
+          return options.Marketplace.Items[e];
+        }),
+        Spells:Object.keys(options.Marketplace.Spells).filter(function(e){
+          return options.Marketplace.Spells[e];
+        }),
+        Weapons:Object.keys(options.Marketplace.Weapons).filter(function(e){
+          return options.Marketplace.Weapons[e];
+        }),
+        Monsters:Object.keys(options.Monsters.All).filter(function(e){
+          return options.Monsters.All[e];
+        }),
+        Guardians:Object.keys(options.Guardians.All).filter(function(e){
+          return options.Guardians.All[e];
+        }),
+        Rooms:Object.keys(options["Dungeon Rooms"].All).filter(function(e){
+          return options["Dungeon Rooms"].All[e];
+        })
+      };
+      log(null,"Available cards:",remaining);
+    },
+    onTurnOff:function(elem){
+      // exec your logic when the switch is deactivated
+      var quest = $(elem).attr("name");
+      exclude.Quest[quest] = true;
+      var affectedCards = {};
+      Object.keys(options).forEach(function(groupName) {
+        var group = options[groupName].All;
+        var toggleFunc = toggle(groupName,false);
+        affectedCards[groupName] = [];
+        Object.keys(group).forEach(function(cardName) {
+          if(group[cardName] === false) {
+            return;
+          }
+          var card = getCard(cardName,groupName);
+          if(group[cardName] && (card.Quest === quest)) {
+            affectedCards[groupName].push(cardName);
+            toggleFunc(cardName);
+          }
+        });
+      });
+      log(null,"Disabling cards:",affectedCards);
+      var remaining = {
+        Heroes:Object.keys(options.Heroes.All).filter(function(e){
+          return options.Heroes.All[e];
+        }),
+        Items:Object.keys(options.Marketplace.Items).filter(function(e){
+          return options.Marketplace.Items[e];
+        }),
+        Spells:Object.keys(options.Marketplace.Spells).filter(function(e){
+          return options.Marketplace.Spells[e];
+        }),
+        Weapons:Object.keys(options.Marketplace.Weapons).filter(function(e){
+          return options.Marketplace.Weapons[e];
+        }),
+        Monsters:Object.keys(options.Monsters.All).filter(function(e){
+          return options.Monsters.All[e];
+        }),
+        Guardians:Object.keys(options.Guardians.All).filter(function(e){
+          return options.Guardians.All[e];
+        }),
+        Rooms:Object.keys(options["Dungeon Rooms"].All).filter(function(e){
+          return options["Dungeon Rooms"].All[e];
+        })
+      };
+      log(null,"Available cards:",remaining);
+    }
+  });
+    
 });
 
 function getEnums(){

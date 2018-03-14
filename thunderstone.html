@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width">
   <title>Thunderstone Quest Randomizer</title>
   <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+  <link href="plugins/jquery.mswitch.css" rel="stylesheet" type="text/css" />
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="plugins/jquery.mswitch.js"></script>
   <style>
     html,
     body {
@@ -16,7 +18,7 @@
   </style>
 </head>
 <body>
-  <section id="group_selector">
+  <section id="generators">
     <button id="choose_heroes_classed" type="button" class="generate">Choose Heroes (4 Classes)</button>
     <button id="choose_heroes_random" type="button" class="generate">(Random)</button>
     <br>
@@ -49,18 +51,77 @@
     <button id="choose_guardian" type="button" class="generate">Choose Guardian</button>
     <br>
     <span id="guardian_choice"></span>
-    <br>
-    Coming Soon:
-    <ul>
-      <li>
-        Filter by Quest/Set
-      </li>
-      <li>
-        More card/room info…
-      </li>
-    </ul>
   </section>
-  <div id="output"></div>
+  <section id="sets">
+    <table>
+      <tr id="quest1">
+        <td>
+          <input type="checkbox" class="quest" name="A Mirror in the Dark" value="true" checked/>
+        </td>
+        <td>
+          <label>Quest 1: A Mirror in the Dark</label>
+        </td>
+      </tr>
+      <tr id="quest2">
+        <td>
+          <input type="checkbox" class="quest" name="Risen from the Mire" value="true" checked/>
+        </td>
+        <td>
+          <label>Quest 2: Risen from the Mire</label>
+        </td>
+      </tr>
+      <tr id="quest3">
+        <td>
+          <input type="checkbox" class="quest" name="At the Foundations of the World" value="true" checked/>
+        </td>
+        <td>
+          <label>Quest 3: At the Foundations of the World</label>
+        </td>
+      </tr>
+      <tr id="quest4">
+        <td>
+          <input type="checkbox" class="quest" name="Total Eclipse of the Sun" value="true" checked/>
+        </td>
+        <td>
+          <label>Quest 4: Total Eclipse of the Sun</label>
+        </td>
+      </tr>
+      <tr id="quest5">
+        <td>
+          <input type="checkbox" class="quest" name="Ripples in Time" value="true" checked/>
+        </td>
+        <td>
+          <label>Quest 5: Ripples in Time</label>
+        </td>
+      </tr>
+      <tr id="promos">
+        <td>
+          <input type="checkbox" class="quest" name="Promos" value="true" checked/>
+        </td>
+        <td>
+          <label>Promo Cards (Kickstarter Bonus)</label>
+        </td>
+      </tr>
+      <tr id="quest0">
+        <td>
+          <input type="checkbox" class="quest" name="Bandits of Black Rock" value="true" checked/>
+        </td>
+        <td>
+          <label>Prequel: Bandits of Black Rock (Kickstarter Bonus)</label>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <br>
+  Coming Soon:
+  <ul>
+    <li>
+      Better marketplace generation (no more "not enough choices" if there are available cards of other types)
+    </li>
+    <li>
+      More card/room info…
+    </li>
+  </ul>
   <script src="thunderstone.js"></script>
 </body>
 </html>
