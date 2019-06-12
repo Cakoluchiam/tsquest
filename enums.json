@@ -7,7 +7,9 @@
     "quest2":"Risen from the Mire",
     "quest3":"At the Foundations of the World",
     "quest4":"Total Eclipse of the Sun",
-    "quest5":"Ripple in Time"
+    "quest5":"Ripple in Time",
+    "quest6":"What Lies Beneath",
+    "quest7":"Frozen in Time"
   },
   "color":{
     "onbuttoncolor": "green",

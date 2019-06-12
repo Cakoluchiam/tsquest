@@ -555,7 +555,7 @@
         "Rogue"
       ],
       "Cost": 6,
-      "Summary": "Aird uses your opponents' strengths against them.",
+      "Summary": "Aird uses your opponents’ strengths against them.",
       "Types": {
         "Rogue": true,
         "Human": true
@@ -662,6 +662,281 @@
         "Light": true
       },
       "Category": "Heroes"
+    },
+    "Graeme Crawford": {
+      "Quest": "What Lies Beneath",
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Cleric",
+        "Fighter"
+      ],
+      "Cost": 8,
+      "Summary": "This grizzled veteran may not like you, but he'll heal you. When the situation calls for it, he can imbue his attack with [Magic Attack].",
+      "Types": {
+        "Cleric": true,
+        "Fighter": true,
+        "Human": true
+      },
+      "Keywords": {
+        "Physical Attack": true
+      },
+      "Category": "Heroes"
+    },
+    "Khomros": {
+      "Quest": "What Lies Beneath",
+      "Cost": 8,
+      "Category": "Heroes",
+      "Summary": "Better at battling the [Aberrations] and [Plants] of the sewer, Khomros uses whatever [Weapons] he finds (discards from your deck).",
+      "Types": {
+        "Triton": true,
+        "Fighter": true
+      },
+      "Keywords": {
+        "Aberration": true,
+        "Plant": true,
+        "Weapon": true,
+        "Physical Attack": true,
+        "Deck": true
+      },
+      "Races": [
+        "Triton"
+      ],
+      "Classes": [
+        "Fighter"
+      ]
+    },
+    "Ophialyn the Tracker": {
+      "Quest": "What Lies Beneath",
+      "Cost": 9,
+      "Category": "Heroes",
+      "Summary": "Ophialyn is the best hunter of [Beasts], [Fey], [Giants], [Golems], and [Humanoids]. She learns to track like a [Rogue] at [Level II].",
+      "Types": {
+        "Elf": true,
+        "Human": true,
+        "Fighter": true
+      },
+      "Keywords": {
+        "Beast": true,
+        "Fey": true,
+        "Giant": true,
+        "Golem": true,
+        "Humanoid": true,
+        "Rogue": true,
+        "Physical Attack": true
+      },
+      "Races": [
+        "Elf",
+        "Human"
+      ],
+      "Classes": [
+        "Fighter"
+      ]
+    },
+    "Runiva Highstone": {
+      "Quest": "What Lies Beneath",
+      "Cost": 7,
+      "Category": "Heroes",
+      "Summary": "Experienced at battling [Beasts] and [Giants], Runiva will light the path if she can find (discard from your deck) the right spell.",
+      "Types": {
+        "Dwarf": true,
+        "Wizard": true
+      },
+      "Keywords": {
+        "Beast": true,
+        "Giant": true,
+        "Magic Attack": true,
+        "Light": true,
+        "Deck": true
+      },
+      "Races": [
+        "Dwarf"
+      ],
+      "Classes": [
+        "Wizard"
+      ]
+    },
+    "Uvina the Delver": {
+      "Quest": "What Lies Beneath",
+      "Cost": 7,
+      "Category": "Heroes",
+      "Summary": "Uvina delves through (discards from) your deck, getting extra [Gear] for your next venture.",
+      "Types": {
+        "Halfling": true,
+        "Rogue": true
+      },
+      "Keywords": {
+        "Gear": true,
+        "Physical Attack": true,
+        "Gold": true,
+        "Light": true,
+        "Deck": true
+      },
+      "Races": [
+        "Halfling"
+      ],
+      "Classes": [
+        "Rogue"
+      ]
+    },
+    "Wiltran Proudmore": {
+      "Quest": "What Lies Beneath",
+      "Cost": 8,
+      "Category": "Heroes",
+      "Summary": "Wiltran brews [Potions] and focuses his efforts on healing your [Wound Cards] by discarding them straight out of your deck. He learns [Wizard]ly arts at [Level II].",
+      "Types": {
+        "Halfling": true,
+        "Cleric": true
+      },
+      "Keywords": {
+        "Potion": true,
+        "Wound Card": true,
+        "Wizard": true,
+        "Magic Attack": true,
+        "Gold": true,
+        "Deck": true
+      },
+      "Races": [
+        "Halfling"
+      ],
+      "Classes": [
+        "Cleric"
+      ]
+    },
+    "Breezy": {
+      "Quest": "Frozen in Time",
+      "Cost": 6,
+      "Category": "Heroes",
+      "Summary": "A master of the elemental arts.",
+      "Types": {
+        "Human": true,
+        "Wizard": true
+      },
+      "Keywords": {
+        "Magic Attack": true
+      },
+      "Races": [
+        "Human"
+      ],
+      "Classes": [
+        "Wizard"
+      ]
+    },
+    "Drulfal the Primordial": {
+      "Quest": "Frozen in Time",
+      "Cost": 8,
+      "Category": "Heroes",
+      "Summary": "Drulfal is adept at both wielding and withstanding the elements.",
+      "Types": {
+        "Elemental": true,
+        "Dwarf": true,
+        "Cleric": true
+      },
+      "Keywords": {
+        "Physical Attack": true
+      },
+      "Races": [
+        "Elemental",
+        "Dwarf"
+      ],
+      "Classes": [
+        "Cleric"
+      ]
+    },
+    "Lefira": {
+      "Quest": "Frozen in Time",
+      "Cost": 6,
+      "Category": "Heroes",
+      "Summary": "Lefira gets the most out of [Bread] tokens and [Edged Weapons]. She produces [Gold] at [Level II].",
+      "Types": {
+        "Halfling": true,
+        "Fighter": true
+      },
+      "Keywords": {
+        "Bread": true,
+        "Gold": true,
+        "Physical Attack": true
+      },
+      "Races": [
+        "Halfling"
+      ],
+      "Classes": [
+        "Fighter"
+      ]
+    },
+    "Lilande": {
+      "Quest": "Frozen in Time",
+      "Cost": 8,
+      "Category": "Heroes",
+      "Summary": "This elven bard learns the arts of the [Wizard] at [Level II] and the [Fighter] at [Level III]. Lilande’s tale is best if you have a [Side Quest] or [Prestige Class] to relate.",
+      "Types": {
+        "Elf": true,
+        "Rogue": true
+      },
+      "Keywords": {
+        "Wizard": true,
+        "Fighter": true,
+        "Side Quest": true,
+        "Prestige Class": true,
+        "Physical Attack": true,
+        "Light": true,
+        "Gold": true
+      },
+      "Races": [
+        "Elf"
+      ],
+      "Classes": [
+        "Rogue"
+      ]
+    },
+    "Rugduhr Blackmane": {
+      "Quest": "Frozen in Time",
+      "Cost": 7,
+      "Category": "Heroes",
+      "Summary": "Rugduhr maximizes his [Gear] while he hunts the one he once served.",
+      "Types": {
+        "Demon": true,
+        "Dwarf": true,
+        "Rogue": true
+      },
+      "Keywords": {
+        "Gear": true,
+        "Physical Attack": true,
+        "Gold": true,
+        "Light": true
+      },
+      "Races": [
+        "Demon",
+        "Dwarf"
+      ],
+      "Classes": [
+        "Rogue"
+      ]
+    },
+    "Samly Thrackson": {
+      "Quest": "Frozen in Time",
+      "Cost": 7,
+      "Category": "Heroes",
+      "Summary": "Samly destroys the impurities and inefficiencies he finds in decks.",
+      "Types": {
+        "Human": true,
+        "Orc": true,
+        "Cleric": true,
+        "Fighter": true
+      },
+      "Keywords": {
+        "Physical Attack": true,
+        "Deck": true
+      },
+      "Races": [
+        "Human",
+        "Orc"
+      ],
+      "Classes": [
+        "Cleric",
+        "Fighter"
+      ]
     }
   },
   "Items": {
@@ -748,6 +1023,167 @@
     "Ring of Spell Storing": {
       "Quest": "Ripples in Time",
       "Category": "Items"
+    },
+    "Bracers of Cleansing": {
+      "Quest": "What Lies Beneath",
+      "Cost": 5,
+      "Category": "Items",
+      "Summary": "[Village] or [Dungeon]: Discard 3 cards from your deck. Heal 1 [Wound Card] discarded or gain 1 [Light].",
+      "Types": {
+        "Magic": true,
+        "Item": true
+      },
+      "Keywords": {
+        "Village": true,
+        "Dungeon": true,
+        "Gold": true,
+        "Magic Attack": true,
+        "Skill": true,
+        "Light": true,
+        "Wound Card": true,
+        "Deck": true
+      }
+    },
+    "Neverending Rope Spool": {
+      "Quest": "What Lies Beneath",
+      "Cost": 4,
+      "Category": "Items",
+      "Summary": "After this card is discarded from your deck, draw it if you have a [Rogue]. [Village] or [Dungeon]: Give 1 [Hero] the [Rogue] keyword and +1 to the values they have printed: [Physical Attack], [Magic Attack], [Skill], [Light], [Level], and [Gold]. Discard 1 card from your deck for each [Rogue] you now have.",
+      "Types": {
+        "Magic": true,
+        "Item": true
+      },
+      "Keywords": {
+        "Village": true,
+        "Dungeon": true,
+        "Rogue": true,
+        "Physical Attack": true,
+        "Magic Attack": true,
+        "Gold": true,
+        "Skill": true,
+        "Light": true,
+        "Level": true,
+        "Victory Point": true,
+        "Deck": true
+      }
+    },
+    "Studded Leather Shirt": {
+      "Quest": "What Lies Beneath",
+      "Cost": 3,
+      "Category": "Items",
+      "Summary": "+1 [Physical Attack] if this [Hero] is [Human] or wields a [Weapon]. You may resolve the [After Battle] from 1 Studded Leather Shirt per turn, or 2 per turn if this is a [Fighter]. [After Battle]: Take −1 [Wound] from Monsters this turn.",
+      "Types": {
+        "Item": true
+      },
+      "Keywords": {
+        "Physical Attack": true,
+        "Skill": true,
+        "Gold": true,
+        "After Battle": true,
+        "Wound": true,
+        "Fighter": true,
+        "Human": true,
+        "Weapon": true
+      },
+      "Races": [
+        "Race"
+      ],
+      "Classes": [
+        "Class"
+      ]
+    },
+    "Wand of Illumination": {
+      "Quest": "What Lies Beneath",
+      "Cost": 7,
+      "Category": "Items",
+      "Summary": "[Spoils]: If you have a [Cleric], [Wizard], or [Halfling], gain 1 [Lantern] token.",
+      "Types": {
+        "Magic": true,
+        "Item": true
+      },
+      "Keywords": {
+        "Cleric": true,
+        "Wizard": true,
+        "Halfling": true,
+        "Lantern": true,
+        "Light": true,
+        "Victory Point": true,
+        "Magic Attack": true,
+        "Gold": true,
+        "Spoils": true
+      }
+    },
+    "Eternal Flame": {
+      "Quest": "Frozen in Time",
+      "Cost": 8,
+      "Category": "Items",
+      "Summary": "You may only give this card’s +[Magic Attack] and +[Skill] boosts to a [Dwarf] or [Cleric].",
+      "Types": {
+        "Elemental": true,
+        "Magic": true,
+        "Item": true
+      },
+      "Keywords": {
+        "Magic Attack": true,
+        "Skill": true,
+        "Light": true,
+        "Gold": true,
+        "Dwarf": true,
+        "Cleric": true
+      }
+    },
+    "Ice Climbing Gear": {
+      "Quest": "Frozen in Time",
+      "Cost": 4,
+      "Category": "Items",
+      "Summary": "This card’s [Skill] and [Light] values each have +1 when given to a [Halfling] or [Rogue]. Ignore [Alert] effects from Dungeon Rooms.",
+      "Types": {
+        "Item": true
+      },
+      "Keywords": {
+        "Skill": true,
+        "Light": true,
+        "Alert": true,
+        "Halfling": true,
+        "Rogue": true,
+        "Gold": true,
+        "Victory Point": true
+      }
+    },
+    "Snow Trekking Tools": {
+      "Quest": "Frozen in Time",
+      "Cost": 4,
+      "Category": "Items",
+      "Summary": "[Frostbite Wounds] you take are [Wounds] instead. [Dungeon]: Discard this card and another card to draw 1 card.",
+      "Types": {
+        "Item": true
+      },
+      "Keywords": {
+        "Frostbite Wound": true,
+        "Wound": true,
+        "Light": true,
+        "Victory Point": true,
+        "Skill": true,
+        "Gold": true
+      }
+    },
+    "Tent": {
+      "Quest": "Frozen in Time",
+      "Cost": 5,
+      "Category": "Items",
+      "Summary": "You may ignore [After Battle] abilities from Dungeon Rooms. [Spoils]: You have +1 [HP]. You may only use [Spoils] from 1 Tent per turn.",
+      "Types": {
+        "Item": true
+      },
+      "Keywords": {
+        "After Battle": true,
+        "Spoils": true,
+        "HP": true,
+        "Light": true,
+        "Victory Point": true,
+        "Skill": true,
+        "Gold": true
+      }
     }
   },
   "Spells": {
@@ -838,6 +1274,155 @@
     "Summon Storm": {
       "Quest": "Ripples in Time",
       "Category": "Spells"
+    },
+    "Blizzard": {
+      "Quest": "Frozen in Time",
+      "Cost": 5,
+      "Category": "Spells",
+      "Summary": "1 [Magic Attack] for each of your [Frostbite Wounds]. [Dungeon]: +2 [Magic Attack]. Take 1 [Frostbite Wound].",
+      "Types": {
+        "Elemental": true,
+        "Spell": true
+      },
+      "Keywords": {
+        "Magic Attack": true,
+        "Frostbite Wound": true,
+        "Victory Point": true
+      }
+    },
+    "Cone of Cold": {
+      "Quest": "Frozen in Time",
+      "Cost": 6,
+      "Category": "Spells",
+      "Summary": "When you gain this card, roll [1d6]. On a 4+, destroy 1 of your cards. [Magic Attack] equal to your highest [Wizard]’s [Level]+1.",
+      "Types": {
+        "Arcane": true,
+        "Chaos": true,
+        "Elemental": true,
+        "Spell": true
+      },
+      "Keywords": {
+        "Magic Attack": true,
+        "Wizard": true,
+        "Dice": true
+      }
+    },
+    "Create Fire": {
+      "Quest": "Frozen in Time",
+      "Cost": 3,
+      "Category": "Spells",
+      "Summary": "[Bread] tokens used to boost [Heroes]’ [Skill] also give the [Hero] +1 [Physical Attack]. [Bread] tokens used for [Gold] produce +1 [Gold].",
+      "Types": {
+        "Elemental": true,
+        "Spell": true
+      },
+      "Keywords": {
+        "Bread": true,
+        "Gold": true,
+        "Physical Attack": true,
+        "Light": true,
+        "Magic Attack": true,
+        "Victory Point": true
+      }
+    },
+    "Inner Fire": {
+      "Quest": "Frozen in Time",
+      "Cost": 4,
+      "Category": "Spells",
+      "Summary": "Monster [Before Battle] are [After Battle] instead for you. This card has 1 [Light] if you have a [Cleric] or [Wizard], or 2 [Light] if you have 1 [Hero] with both keywords.",
+      "Types": {
+        "Arcane": true,
+        "Divine": true,
+        "Elemental": true,
+        "Spell": true
+      },
+      "Keywords": {
+        "Before Battle": true,
+        "After Battle": true,
+        "Wizard": true,
+        "Cleric": true,
+        "Light": true,
+        "Skill": true,
+        "Gold": true,
+        "Victory Point": true
+      }
+    },
+    "Acid Burst": {
+      "Quest": "What Lies Beneath",
+      "Cost": 5,
+      "Category": "Spells",
+      "Summary": "Reduce the [Defense] of the Monster you battle this turn by your highest [Wizard]’s [Level], or [Level]+1 if battling an [Aberration], [Golem], or [Humanoid].",
+      "Types": {
+        "Arcane": true,
+        "Elemental": true,
+        "Spell": true
+      },
+      "Keywords": {
+        "Defense": true,
+        "Wizard": true,
+        "Aberration": true,
+        "Golem": true,
+        "Humanoid": true,
+        "Magic Attack": true,
+        "Victory Point": true
+      }
+    },
+    "Ascendance": {
+      "Quest": "What Lies Beneath",
+      "Cost": 8,
+      "Category": "Spells",
+      "Summary": "-[Cost] equal to the total [Level] of all [Clerics] and [Wizards] you have. [Village] or [Spoils]: Level up 1 [Hero], paying [XP].",
+      "Types": {
+        "Arcane": true,
+        "Chaos": true,
+        "Divine": true,
+        "Spell": true
+      },
+      "Keywords": {
+        "Cost": true,
+        "Cleric": true,
+        "Wizard": true,
+        "Level Up": true,
+        "XP": true,
+        "Light": true
+      }
+    },
+    "Cure Disease": {
+      "Quest": "What Lies Beneath",
+      "Cost": 5,
+      "Category": "Spells",
+      "Summary": "[Village] or [Dungeon]: Heal 1 [Wound]. If it was a [Disease], also heal 1 [Wound]. You may give 1 [Cleric] +[Magic Attack] equal to the [Cleric]’s [Level].",
+      "Types": {
+        "Divine": true,
+        "Spell": true
+      },
+      "Keywords": {
+        "Village": true,
+        "Dungeon": true,
+        "Wound": true,
+        "Disease": true,
+        "Wound Card": true,
+        "Magic Attack": true,
+        "Gold": true,
+        "Cleric": true
+      }
+    },
+    "Haste": {
+      "Quest": "What Lies Beneath",
+      "Cost": 7,
+      "Category": "Spells",
+      "Summary": "After this card is discarded from your deck, give 1 [Hero] +1 [Physical Attack] and +1 [Skill]. [Dungeon]: Give your [Heroes] and [Heroes] in your Party +1 [Physical Attack] and +1 [Skill]. When discarding cards from your deck this turn, discard +1 card.",
+      "Types": {
+        "Chaos": true,
+        "Spell": true
+      },
+      "Keywords": {
+        "Physical Attack": true,
+        "Skill": true,
+        "Hero": true,
+        "Party": true,
+        "Deck": true
+      }
     }
   },
   "Weapons": {
@@ -932,6 +1517,175 @@
     "Magi Staff": {
       "Quest": "Ripples in Time",
       "Category": "Weapons"
+    },
+    "Fire Rod": {
+      "Quest": "Frozen in Time",
+      "Cost": 7,
+      "Skill": 9,
+      "Category": "Weapons",
+      "Summary": "−5 [Skill] for [Clerics] and [Wizards], or −3 [Skill] for [Rogues] and [Humans]. [Spoils]: Gain 1 [Lantern] token.",
+      "Types": {
+        "Magic": true,
+        "Elemental": true,
+        "Weapon": true
+      },
+      "Keywords": {
+        "Skill": true,
+        "Lantern": true,
+        "Cleric": true,
+        "Wizard": true,
+        "Rogue": true,
+        "Human": true,
+        "Spoils": true,
+        "Light": true,
+        "Magic Attack": true,
+        "Gold": true,
+        "Victory Point": true
+      }
+    },
+    "Flaming Hammer": {
+      "Quest": "Frozen in Time",
+      "Cost": 6,
+      "Skill": 8,
+      "Category": "Weapons",
+      "Summary": "−2 [Skill] for [Dwarves] and [Orcs].",
+      "Types": {
+        "Blunt": true,
+        "Weapon": true
+      },
+      "Keywords": {
+        "Dwarf": true,
+        "Orc": true,
+        "Skill": true,
+        "Light": true,
+        "Physical Attack": true,
+        "Gold": true
+      }
+    },
+    "Frost Bow": {
+      "Quest": "Frozen in Time",
+      "Cost": 7,
+      "Skill": 6,
+      "Category": "Weapons",
+      "Summary": "−2 [Skill] for, and +1 [Magic Attack] against, [Celestials], [Demons], [Elementals], and [Elves].",
+      "Types": {
+        "Magic": true,
+        "Bow": true,
+        "Elemental": true,
+        "Weapon": true
+      },
+      "Keywords": {
+        "Physical Attack": true,
+        "Skill": true,
+        "Magic Attack": true,
+        "Celestial": true,
+        "Demon": true,
+        "Elemental": true,
+        "Elf": true,
+        "Victory Point": true
+      }
+    },
+    "Mechanical Harpoon": {
+      "Quest": "Frozen in Time",
+      "Cost": 4,
+      "Skill": 5,
+      "Category": "Weapons",
+      "Summary": "−2 [Skill] for [Halflings] and [Rogues]. [Spoils]: If this is wielded by a [Hero] with 6+ [Skill], gain 1 [Bread] token.",
+      "Types": {
+        "Bow": true,
+        "Edged": true,
+        "Weapon": true
+      },
+      "Keywords": {
+        "Skill": true,
+        "Halfling": true,
+        "Rogue": true,
+        "Physical Attack": true,
+        "Bread": true,
+        "Victory Point": true
+      }
+    },
+    "Bastard Sword": {
+      "Quest": "What Lies Beneath",
+      "Cost": 7,
+      "Skill": 7,
+      "Category": "Weapons",
+      "Summary": "−2 [Skill] for [Humans]. [Spoils]: If this is wielded by a [Fighter], level it up, paying [XP].",
+      "Types": {
+        "Edged": true,
+        "Weapon": true
+      },
+      "Keywords": {
+        "Skill": true,
+        "Human": true,
+        "Fighter": true,
+        "XP": true,
+        "Victory Point": true,
+        "Physical Attack": true,
+        "Gold": true,
+        "Spoils": true
+      }
+    },
+    "Battlepick": {
+      "Quest": "What Lies Beneath",
+      "Cost": 4,
+      "Skill": 4,
+      "Category": "Weapons",
+      "Summary": "After this card is discarded from your deck, you may give it to a [Hero] with 5+ [Skill] to wield. [Dungeon]: Discard 2 cards from your deck.",
+      "Types": {
+        "Edged": true,
+        "Weapon": true
+      },
+      "Keywords": {
+        "Skill": true,
+        "Physical Attack": true,
+        "Alert": true,
+        "Gold": true,
+        "Victory Point": true,
+        "Deck": true
+      }
+    },"Cleaner’s Net": {
+      "Quest": "What Lies Beneath",
+      "Cost": 1,
+      "Skill": 1,
+      "Category": "Weapons",
+      "Summary": "You may ignore [Alert] effects from [Plants], [Swarms], and [Vermin]. They have −1 [Defense] and −1 to their [Wound] value against you. [Spoils]: You may destroy this [Weapon].",
+      "Types": {
+        "Blunt": true,
+        "Weapon": true
+      },
+      "Keywords": {
+        "Alert": true,
+        "Defense": true,
+        "Spoils": true,
+        "Plant": true,
+        "Vermin": true,
+        "Swarm": true,
+        "Wound": true
+      }
+    },
+    "The Five Points": {
+      "Quest": "What Lies Beneath",
+      "Cost": 6,
+      "Skill": 8,
+      "Category": "Weapons",
+      "Summary": "−2 [Skill] for [Dwarves] and [Tritons]. After this card is discarded (from anywhere, but not from the turn ending), gain 1 [Bread]. [Village] or [Dungeon]: If unwielded, discard this card.",
+      "Types": {
+        "Edged": true,
+        "Weapon": true
+      },
+      "Keywords": {
+        "Skill": true,
+        "Dwarf": true,
+        "Triton": true,
+        "Bread": true,
+        "Village": true,
+        "Dungeon": true,
+        "Deck": true,
+        "Discard": true,
+        "Physical Attack": true,
+        "Alert": true
+      }
     }
   },
   "Treasures": {
@@ -955,6 +1709,18 @@
     },
     "Lightbringer": {
       "Quest": "Ripples in Time"
+    },
+    "Hendrik the Brainless": {
+      "Quest": "What Lies Beneath"
+    },
+    "Ward of Healing": {
+      "Quest": "What Lies Beneath"
+    },
+    "Gemini Dagger": {
+      "Quest": "Frozen in Time"
+    },
+    "True Vision": {
+      "Quest": "Frozen in Time"
     }
   },
   "Monsters": {
@@ -1000,7 +1766,7 @@
         "Giant",
         "Vermin"
       ],
-      "Summary": "They wound heavily ([Wound] and [Festering]) and are drawn to equipment.",
+      "Summary": "They wound heavily ([Wound] and [Wound Card]) and are drawn to equipment.",
       "Category": "Monsters"
     },
     "Ancient Adventurers": {
@@ -1033,7 +1799,7 @@
       "Types": [
         "Fey"
       ],
-      "Summary": "They deal Festering Wounds ([Festering]).",
+      "Summary": "They deal Festering Wounds ([Wound Card]).",
       "Category": "Monsters"
     },
     "Corrupted Elves": {
@@ -1091,7 +1857,7 @@
       "Types": [
         "Undead"
       ],
-      "Summary": "They deal Festering Wounds ([Festering]).",
+      "Summary": "They deal Festering Wounds ([Wound Card]).",
       "Category": "Monsters"
     },
     "Chaos Lizards": {
@@ -1109,7 +1875,7 @@
       "Types": [
         "Undead"
       ],
-      "Summary": "They deal [Festering] and are resistant to [Physical Attack] and [Edged Weapons].",
+      "Summary": "They deal [Wound Card] and are resistant to [Physical Attack] and [Edged Weapons].",
       "Category": "Monsters"
     },
     "Marsh Trolls": {
@@ -1240,6 +2006,241 @@
       ],
       "Summary": "They are immune to Heroes with low [Skill].",
       "Category": "Monsters"
+    },
+    "Arctic Animals": {
+      "Quest": "Frozen in Time",
+      "Level": 1,
+      "Category": "Monsters",
+      "Summary": "Arctic Animals are well-adapted to stalking their chilled prey, attacking as you enter or leave the room.",
+      "Types": {
+        "Beast": true,
+        "Arctic Animal": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Alert": true
+      },
+      "Races": [
+        "Beast"
+      ]
+    },
+    "Abyssal Servants": {
+      "Quest": "Frozen in Time",
+      "Level": 1,
+      "Category": "Monsters",
+      "Summary": "Abyssal Servants chill your bones, reducing your [HP].",
+      "Types": {
+        "Elemental": true,
+        "Demon": true,
+        "Abyssal Servant": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "HP": true
+      },
+      "Races": [
+        "Elemental",
+        "Demon"
+      ]
+    },
+    "Bloodfrost Clan": {
+      "Quest": "Frozen in Time",
+      "Level": 2,
+      "Category": "Monsters",
+      "Summary": "Unimpeded by the cold, the Bloodfrost Clan strikes hard and fast, both before and after battle.",
+      "Types": {
+        "Elemental": true,
+        "Humanoid": true,
+        "Bloodfrost Clan": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Frostbite Wound": true
+      },
+      "Races": [
+        "Elemental",
+        "Humanoid"
+      ]
+    },
+    "Tundra Wolf Pack": {
+      "Quest": "Frozen in Time",
+      "Level": 2,
+      "Category": "Monsters",
+      "Summary": "A Tundra Wolf Pack’s numbers and attacks are as fast as they are unpredictable, striking before and after battle. (This [Swarm] gains +[1d6] [Defense].)",
+      "Types": {
+        "Beast": true,
+        "Swarm": true,
+        "Tundra Wolf Pack": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Dice": true,
+        "Defense": true,
+        "Frostbite Wound": true,
+        "Swarm": true
+      },
+      "Races": [
+        "Beast"
+      ],
+      "Classes": [
+        "Swarm"
+      ]
+    },
+    "Frozen Natives": {
+      "Quest": "Frozen in Time",
+      "Level": 3,
+      "Category": "Monsters",
+      "Summary": "An ancient race of half-dog, half-humans, the Adlet attacks are devastatingly unpredictable.",
+      "Types": {
+        "Humanoid": true,
+        "Beast": true,
+        "Frozen Native": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Frostbite Wound": true,
+        "Treasure": true
+      },
+      "Races": [
+        "Humanoid",
+        "Beast"
+      ]
+    },
+    "Ice Behemoths": {
+      "Quest": "Frozen in Time",
+      "Level": 3,
+      "Category": "Monsters",
+      "Summary": "The arctic wastes abount with high [Defense] behemoths who ask no questions.",
+      "Types": {
+        "Elemental": true,
+        "Giant": true,
+        "Humanoid": true,
+        "Ice Behemoth": true,
+        "Monsters": true
+      },
+      "Keywords": {
+        "Frostbite Wound": true,
+        "Treasure": true,
+        "Defense": true
+      },
+      "Races": [
+        "Elemental",
+        "Giant",
+        "Humanoid"
+      ]
+    },
+    "Drain Dwellers": {
+      "Quest": "What Lies Beneath",
+      "Level": 1,
+      "Category": "Monsters",
+      "Summary": "They attack you when you try to move out of their room.",
+      "Types": {
+        "Beast": true,
+        "Drain Dweller": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Alert": true
+      },
+      "Races": [
+        "Beast"
+      ]
+    },
+    "Plague Rats": {
+      "Quest": "What Lies Beneath",
+      "Level": 1,
+      "Category": "Monsters",
+      "Summary": "This swarm can number in dozens or hundreds, but it often brings disease. (This [Swarm] gains +[1d6] [Defense].)",
+      "Types": {
+        "Vermin": true,
+        "Swarm": true,
+        "Plague Rat": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Dice": true,
+        "Defense": true,
+        "Wound Card": true
+      },
+      "Races": [
+        "Vermin"
+      ],
+      "Classes": [
+        "Swarm"
+      ]
+    },
+    "Ghoulish Scavengers": {
+      "Quest": "What Lies Beneath",
+      "Level": 2,
+      "Category": "Monsters",
+      "Summary": "They use your diseases against you.",
+      "Types": {
+        "Undead": true,
+        "Ghoulish Scavenger": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Wound Card": true
+      },
+      "Races": [
+        "Undead"
+      ]
+    },
+    "Sewer Trogs": {
+      "Quest": "What Lies Beneath",
+      "Level": 2,
+      "Category": "Monsters",
+      "Summary": "The Sewer Trogs are heavy wounders.",
+      "Types": {
+        "Humanoid": true,
+        "Sewer Trog": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Wound": true
+      },
+      "Races": [
+        "Humanoid"
+      ]
+    },
+    "Shapeless Spawns": {
+      "Quest": "What Lies Beneath",
+      "Level": 3,
+      "Category": "Monsters",
+      "Summary": "These [Aberrations] of the deep grow stronger with your [Wound Cards].",
+      "Types": {
+        "Aberration": true,
+        "Shapeless Spawn": true,
+        "Monster": true
+      },
+      "Keywords": {
+        "Wound Card": true,
+        "Treasure": true
+      },
+      "Races": [
+        "Aberration"
+      ]
+    },
+    "Waste Wyrms": {
+      "Quest": "What Lies Beneath",
+      "Level": 3,
+      "Category": "Monsters",
+      "Summary": "Heavy wounders that deal both [Wound Cards] and [Wounds].",
+      "Types": {
+        "Waste Wyrm": true,
+        "Monster": true,
+        "Giant": true,
+        "Vermin": true
+      },
+      "Keywords": {
+        "Wound": true,
+        "Wound Card": true,
+        "Treasure": true
+      },
+      "Races": [
+        "Giant",
+        "Vermin"
+      ]
     }
   },
   "Guardians": {
@@ -1261,6 +2262,14 @@
     },
     "Death Sentinel": {
       "Quest": "Ripples in Time",
+      "Category": "Guardians"
+    },
+    "Hive Mind": {
+      "Quest": "What Lies Beneath",
+      "Category": "Guardians"
+    },
+    "Orgrum Coldthunder": {
+      "Quest": "Frozen in Time",
       "Category": "Guardians"
     }
   },
@@ -1742,6 +2751,66 @@
           "Text": "For each [Light] you have, reduce the [Health] boost of this room by 2."
         }
       ],
+      "Category": "Dungeon Rooms"
+    },
+    "Icy Glade": {
+      "Quest": "Frozen in Time",
+      "Level": 1,
+      "Category": "Dungeon Rooms"
+    },
+    "Volcanic Hot Springs": {
+      "Quest": "Frozen in Time",
+      "Level": 1,
+      "Category": "Dungeon Rooms"
+    },
+    "Orc Tribute Site": {
+      "Quest": "Frozen in Time",
+      "Level": 2,
+      "Category": "Dungeon Rooms"
+    },
+    "Tundra Chasms": {
+      "Quest": "Frozen in Time",
+      "Level": 2,
+      "Category": "Dungeon Rooms"
+    },
+    "Adlet Hunting Ground": {
+      "Quest": "Frozen in Time",
+      "Level": 3,
+      "Category": "Dungeon Rooms"
+    },
+    "Glacial Tomb": {
+      "Quest": "Frozen in Time",
+      "Level": 3,
+      "Category": "Dungeon Rooms"
+    },
+    "Junction": {
+      "Quest": "What Lies Beneath",
+      "Level": 1,
+      "Category": "Dungeon Rooms"
+    },
+    "Rat Nest": {
+      "Quest": "What Lies Beneath",
+      "Level": 1,
+      "Category": "Dungeon Rooms"
+    },
+    "Ghoul Nest": {
+      "Quest": "What Lies Beneath",
+      "Level": 2,
+      "Category": "Dungeon Rooms"
+    },
+    "Trog Village": {
+      "Quest": "What Lies Beneath",
+      "Level": 2,
+      "Category": "Dungeon Rooms"
+    },
+    "Arches": {
+      "Quest": "What Lies Beneath",
+      "Level": 3,
+      "Category": "Dungeon Rooms"
+    },
+    "Catacombs": {
+      "Quest": "What Lies Beneath",
+      "Level": 3,
       "Category": "Dungeon Rooms"
     }
   }

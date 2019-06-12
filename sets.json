@@ -301,6 +301,145 @@
         "Dangerous Passageway",
         "Fire Chasm"
       ]
+    },
+    "What Lies Beneath":{
+      "Quest Number":6,
+      "Heroes":[
+        "Graeme Crawford",
+        "Khomros",
+        "Ophialyn the Tracker",
+        "Runiva Highstone",
+        "Uvina the Devler",
+        "Wiltran Proudmore"
+      ],
+      "Items":[
+        "Bracers of Cleansing",
+        "Neverending Rope Spool",
+        "Studded Leather Shirt",
+        "Wand of Illumination"
+      ],
+      "Spells":[
+        "Acid Burst",
+        "Ascendance",
+        "Cure Disease",
+        "Haste"
+      ],
+      "Weapons":[
+        "Bastard Sword",
+        "Battlepick",
+        "Cleaner’s Net",
+        "The Five Points"
+      ],
+      "Monsters":[
+        "Drain Dwellers",
+        "Plague Rats",
+        "Ghoulish Scavengers",
+        "Sewer Trogs",
+        "Shapeless Spawns",
+        "Waste Wyrms"
+      ],
+      "Guardians":[
+        "Hive Mind"
+      ],
+      "Treasures":[
+        "Henrik the Brainless",
+        "Ward of Healing"
+      ],
+      "Dungeon Rooms":[
+        "Junction",
+        "Rat Nest",
+        "Ghoul Nest",
+        "Trog Village",
+        "Arches",
+        "Catacombs"
+      ],
+      "Side Quests":[
+        "Avoiding the Plague",
+        "Dominate the Weretrog",
+        "Plague Doctor",
+        "Research the Legend",
+        "Treasure Hunter"
+      ],
+      "Legendaries":[
+        "Meteor Shower",
+        "Sladrek the Weretrog"
+      ],
+      "Guild Sponsorships":[
+        "Berserkers’ Guild",
+        "Jewelers’ Guild",
+        "Specialists’ Guild",
+        "The Church’s Order"
+      ]
+    },
+    "Frozen in Time":{
+      "Quest Number":7,
+      "Heroes":[
+        "Breezy",
+        "Drulfal the Primordial",
+        "Lefira",
+        "Lilande",
+        "Rugduhr Blackmane",
+        "Samly Thrackson"
+      ],
+      "Items":[
+        "Eternal Flame",
+        "Ice Climbing Gear",
+        "Snow Trekking Tools",
+        "Tent"
+      ],
+      "Spells":[
+        "Blizzard",
+        "Cone of Cold",
+        "Create Fire",
+        "Inner Fire"
+      ],
+      "Weapons":[
+        "Fire Rod",
+        "Flaming Hammer",
+        "Frost Bow",
+        "Mechanical Harpoon"
+      ],
+      "Monsters":[
+        "Arctic Animals",
+        "Abyssal Servants",
+        "Bloodfrost Clan",
+        "Tundra Wolf Pack",
+        "Frozen Natives",
+        "Ice Behemoths"
+      ],
+      "Guardians":[
+        "Orgrum Coldthunder"
+      ],
+      "Treasures":[
+        "Gemini Dagger",
+        "True Vision"
+      ],
+      "Dungeon Rooms":[
+        "Icy Glade",
+        "Volcanic Hot Springs",
+        "Orc Tribute Site",
+        "Tundra Chasms",
+        "Adlet Hunting Ground",
+        "Glacial Tomb"
+      ],
+      "Side Quests":[
+        "Avoiding Attention",
+        "Food Storage",
+        "Gloryseeker",
+        "Hide the Heart",
+        "Well-Rounded"
+      ],
+      "Legendaries":[
+        "Baalok’s Heart",
+        "Thunderstone Map",
+        "Thunderstone Sands"
+      ],
+      "Guild Sponsorships":[
+        "Order of the Ancients",
+        "Explorers’ Guild",
+        "Relic Seekers",
+        "Vikings’ Guild"
+      ]
     }
   }
 }
